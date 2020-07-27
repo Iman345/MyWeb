@@ -5,15 +5,16 @@ box-sizing: border-box;
 
 }
 body{
-    background-color: black;
+    background-color:white;
 }
 .main-menu{
-    background-color: #ff284bf3;
+    background-color: #ff8bbbf3;
+    color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 10vh;
-    font-family: 'Bangers', cursive;
+   font-family: 'Cute Font', cursive;;
 
 }
 .links{
@@ -28,7 +29,7 @@ body{
 }
 
 .links a{
-    color:black;
+    color:white;
     letter-spacing: 0.3rem;
     text-decoration: none;
 
@@ -46,7 +47,7 @@ body{
 }
 
 .mobile-menu div{
-    background-color:black; 
+    background-color:white; 
     margin:0.3rem;
    width: 1.5rem;
 
@@ -74,7 +75,7 @@ body{
         height: 90vh;
         transition: transform 0.6s ease-in;
        transform: translateX(100%);
-       background-color: #ff284bf3;;
+       background-color: #ff8bbbf3;
 }
    .links li{
        opacity: 0;
