@@ -39,38 +39,45 @@ main{
   
     position: fixed;
 }
-
-.menu-nav{
-    padding:  0;
+.menu-nav {
+    list-style: none;
+    padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-  list-style: none;
-  align-items: center;
-
-}
-
-.link{
-    height: 5rem;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .menu-pages{
+    width: 100%;
+  }
+  
+  
+  .link {
     display: flex;
     align-items: center;
+    height: 5rem;
+    
     text-decoration: none;
-
-}
-.menu-list{
-    width:100%;
-}
-
-.mainmenu:hover{
-    width: 15rem;
-}
-.mainmenu:hover.link{
-    display: block;
-}
-
-.link svg {
+   
+  }
+  
+  .link:hover {
+    filter: grayscale(0%) opacity(1);
+    background:gray;
+    color:pink;
+  }
+  
+  .link-text {
+    display: none;
+    margin-left: 1rem;
+  }
+  
+  .link svg {
     width: 2rem;
     min-width: 2rem;
     margin: 0 1.5rem;
   }
+
 
