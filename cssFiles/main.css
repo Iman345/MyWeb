@@ -69,8 +69,8 @@ body{
     right: 0rem;
     height: 92vh;
     transition: transform 0.3s ease-in;
-    transform: translateX(100%);
-   
+   transform: translateX(100%);
+    background-color: #991f34f3;
     
 }
    .links li{
@@ -82,6 +82,7 @@ body{
    }
 }
 .nav-active{
+   
     transform: translateX(0%);
 }
 
