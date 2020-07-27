@@ -68,6 +68,8 @@ body{
     background-image: url('../Pictures/wallpaperflare.com_wallpaper\ \(1\).jpg');
 
     height: 100vh;
+    background-size: cover;
+    background-position:center ;
 }
   
   @media screen and (max-width: 1024px) {
