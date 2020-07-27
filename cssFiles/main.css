@@ -5,8 +5,8 @@ box-sizing: border-box;
 
 }
 
-nav{
-    background-color: pink;
+.main-menu{
+    background-color:black;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -14,4 +14,23 @@ nav{
     font-family: 'Bangers', cursive;
 
 }
+.links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    text-decoration: none;
+    width: 50%;
+}
+
+.links a{
+    color: #e72848f3;
+    letter-spacing: 5px;
+    text-decoration: none;
+
+}
+.web-name{
+    font-size: 1.2rem;
+    color: #ff4161f3;
+}
+
 
