@@ -4,7 +4,9 @@ padding: 0rem;
 box-sizing: border-box;
 
 }
-
+body{
+    background-color: black;
+}
 .main-menu{
     background-color:black;
     display: flex;
