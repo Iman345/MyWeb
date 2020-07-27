@@ -40,3 +40,14 @@ main{
     position: fixed;
 }
 
+.navitems{
+    padding:  0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  list-style: none;
+
+}
+
+
+
