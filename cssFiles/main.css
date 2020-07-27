@@ -1,6 +1,6 @@
 *{
-margin:0px;
-padding: 0px;
+margin:0rem;
+padding: 0rem;
 box-sizing: border-box;
 
 }
@@ -24,13 +24,21 @@ box-sizing: border-box;
 
 .links a{
     color: #e72848f3;
-    letter-spacing: 5px;
+    letter-spacing: 0.3rem;
     text-decoration: none;
 
 }
+
 .web-name{
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: #ff4161f3;
+}
+
+.mobile-menu div{
+    background-color: #ff4161f3; 
+   width: 1.5rem;
+   height:0.19rem ;
+
 }
 
 
