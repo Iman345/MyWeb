@@ -1,110 +1,16 @@
-:root{
-    font-family:'Bangers';
-    font-size: 1rem;
-
-
-}
-
-body{
-    margin: 0;
-    padding: 0;
-    color:white;
-    background-color:black;
-    
+*{
+margin:0px;
+padding: 0px;
+box-sizing: border-box;
 
 }
 
-body::-webkit-scrollbar{
-    width:0.25rem;
-
-
-}
-body::-webkit-scrollbar-track{
-    background-color: white;
-}
-
-body::-webkit-scrollbar-thumb{
-    background-color:#fd1f4c ;
-}
-
-main {
-    margin-left: 5rem;
-    padding: 1rem;
-  }
-  
-  .mainmenu {
-    position: fixed;
-    background-color: var(--bg-primary);
-    transition: width 600ms ease;
-    overflow: scroll;
-  }
-  
-  .menu-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.mainmenu{
+    background-color: pink;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    height: 100%;
-  }
-  
-  .menu-item {
-    width: 100%;
-  }
-  
-  .link {
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    
-  }
-  
-  .link:hover {
-    filter: grayscale(0%) opacity(1);
-    background: grey;
-    color: pink;
-  }
-  
-  .menu-text{
-    display: none;
-    margin-left: 1rem;
-  }
-  
-  .link svg {
-    width: 2rem;
-    min-width: 2rem;
-    margin: 0 1.5rem;
-  }
-  
+    min-height: 10vh;
+    font-family: 'Bangers', cursive;
 
-  
-  .web-icon{
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    text-align: center;
-   
-    font-size: 1.5rem;
-    letter-spacing: 0.3ch;
-    width: 100%;
-  }
-  
-  .web-icon svg {
-    transform: rotate(0deg);
-  
-  }
-  
-  .web-icon
-  {
-    display: inline;
-    position: absolute;
-    left: -999px;
-   
-  }
-  
-  .navbar:hover .logo svg {
-    transform: rotate(-180deg);
-  }
+}
