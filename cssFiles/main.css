@@ -46,8 +46,20 @@ main{
     display: flex;
     flex-direction: column;
   list-style: none;
+  align-items: center;
 
 }
+
+.navlink{
+    height: 5rem;
+    display: flex;
+    align-items: center;
+
+}
+.navicon{
+    width:100%;
+}
+
 
 
 
