@@ -102,7 +102,17 @@ body{
     background:powderblue;
     color:white;
   }
-  
+  article{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1em 2em 2em;
+  }
+
+
+
   @media screen and (max-width: 1024px) {
    .links{
        width: 70%;
