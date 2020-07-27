@@ -6,6 +6,8 @@ box-sizing: border-box;
 }
 body{
     background-color:white;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 .main-menu{
     background-color: #ff8bbbf3;
@@ -36,8 +38,8 @@ body{
 }
 
 .web-name{
-    font-size: 2rem;
-    color:black;
+    font-size: 4rem;
+    color:white;
 }
 
 .mobile-menu{
@@ -54,7 +56,19 @@ body{
    height:0.19rem ;
 
 }
-  
+
+.start{
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background: url();
+
+}
+.page-header{
+    background-image: url('../Pictures/wallpaperflare.com_wallpaper.jpg');
+
+    height: 100vh;
+}
   
   @media screen and (max-width: 1024px) {
    .links{
