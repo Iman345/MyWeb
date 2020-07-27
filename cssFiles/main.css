@@ -10,7 +10,7 @@ body{
     line-height: 1.5;
 }
 .main-menu{
-    background-color: #ff8bbbf3;
+    background-color: #ffc7d7;
     color: white;
     display: flex;
     justify-content: space-around;
@@ -89,7 +89,7 @@ body{
         height: 90vh;
         transition: transform 0.6s ease-in;
        transform: translateX(100%);
-       background-color: #ff8bbbf3;
+       background-color: #ffc7d7;
 }
    .links li{
        opacity: 0;
