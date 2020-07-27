@@ -5,7 +5,7 @@ box-sizing: border-box;
 
 }
 
-.mainmenu{
+nav{
     background-color: pink;
     display: flex;
     justify-content: space-around;
@@ -14,3 +14,4 @@ box-sizing: border-box;
     font-family: 'Bangers', cursive;
 
 }
+
