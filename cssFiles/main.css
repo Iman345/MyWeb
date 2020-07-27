@@ -16,7 +16,7 @@ body{
     justify-content: space-around;
     align-items: center;
     min-height: 10vh;
-   font-family: 'Cute Font', cursive;;
+    font-family: 'Inconsolata', monospace;
 
 }
 .links{
