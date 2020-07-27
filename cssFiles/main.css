@@ -61,6 +61,10 @@ main{
     width:100%;
 }
 
-
-
+.mainmenu:hover{
+    width: 15rem;
+}
+.mainmenu:hover.navlink{
+    display: block;
+}
 
