@@ -23,6 +23,9 @@ body{
     text-decoration: none;
     width: 50%;
 }
+.links li{
+    list-style: none;
+}
 
 .links a{
     color: #e72848f3;
