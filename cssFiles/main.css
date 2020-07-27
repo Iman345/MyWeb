@@ -91,14 +91,15 @@ body{
     padding:20px 20px;
     border-radius:10px;
     margin-top:20px;
-    color:pink;
+    color:white;
+    background-color: pink;
     border:powderblue 3px solid;
    
     text-decoration:none;
   }
   
 .gobtn:hover{
-    background:pink;
+    background:powderblue;
     color:white;
   }
   
