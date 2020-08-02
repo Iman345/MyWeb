@@ -5,7 +5,7 @@ box-sizing: border-box;
 
 }
 body{
-    background-color:#b1d5f8;
+    background-color:white;
     font-size: 1rem;
     line-height: 1.5;
 }
@@ -93,7 +93,7 @@ body{
     margin-top:20px;
     color:white;
     background-color: pink;
-    border:powderblue 3px solid;
+    border:#b1d5f8 3px solid;
    
     text-decoration:none;
   }
@@ -104,6 +104,7 @@ body{
   }
   article{
     display: flex;
+    background-color: #b1d5f8;
     flex-direction: column;
     width: 80%;
     max-width: 700px;
