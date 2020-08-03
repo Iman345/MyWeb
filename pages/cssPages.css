@@ -64,18 +64,7 @@
         background: url();
     
     }
-    .page-header{
-        background-image: url('../Pictures/wallpaperflare.com_wallpaper\ \(1\).jpg');
-        padding:0 20px;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-        height: 100vh;
-        background-size: cover;
-        background-position:center ;
-    }
+    
     
     .page-header h1{
         font: size 2rem;;
