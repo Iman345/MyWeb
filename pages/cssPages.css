@@ -93,7 +93,7 @@
         border-radius:10px;
         margin-top:20px;
         color:white;
-        background-color: pink;
+        background-color: #ffc7d7;
         border:#b1d5f8 3px solid;
        
         text-decoration:none;
@@ -124,7 +124,7 @@
         display: inline-block;
         font-family: 'Inconsolata', monospace;
         color: white;
-        background-color: pink;
+        background-color: #ffc7d7;
         text-decoration: none;
         transition: all .3s;
       }
@@ -148,7 +148,7 @@
       .blogs > ul > li {
         border-radius: .5rem;
           list-style: none;
-        border: 1px solid powderblue;
+        border: 3px solid #b1d5f8;
        
       }
       
@@ -172,8 +172,7 @@
         position: absolute;
         bottom: 0;
         font-family: 'Inconsolata', monospace;
-        color: pink;
-        background-color:white (0,0,0,.7);
+        background-color:#ffc7d7;
        
       }
       
@@ -190,7 +189,7 @@
         line-height: 1.5;
         padding: 1rem .75rem;
         font-family: 'Inconsolata', monospace;
-        color: pink;
+        color: #ffc7d7;
       }
       
       .blogs> ul > li > a {
