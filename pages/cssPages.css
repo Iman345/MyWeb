@@ -73,14 +73,15 @@
         font-family: 'Inconsolata', monospace;
         align-items: center;
         text-align: center;
-        display: inline-block;
+    
       }
       
       .page-header p{
         font-size:20px;
         align-items: center;
         text-align: center;
-  display: inline-block;
+        font-family: 'Inconsolata', monospace;
+
       }
       
     .gobtn{
