@@ -7,9 +7,7 @@
     html {
         scroll-behavior: smooth;
       }
-      .blogpage{
-          background-color:  #b1d5f8;
-      }
+      
     body{
         background-color:white;
         font-size: 1rem;
@@ -151,7 +149,7 @@
       .blogs > ul > li {
         border-radius: .5rem;
           list-style: none;
-        border: 3px solid white;
+        border: 3px solid #ffc7d7;
        
       }
       
