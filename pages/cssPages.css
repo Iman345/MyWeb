@@ -140,13 +140,14 @@
       .blogs > ul {
         display: grid;
         grid-gap: 1rem;
+        list-style: none;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
        
       }
       
       .blogs > ul > li {
         border-radius: .5rem;
-
+          list-style: none;
         border: 1px solid powderblue;
        
       }
@@ -195,6 +196,7 @@
       .blogs> ul > li > a {
         padding: .5rem 1rem;
         margin: .5rem;
+        text-decoration: none;
         font-family: 'Inconsolata', monospace;
       }
     
