@@ -117,6 +117,10 @@
        .links{
            width: 70%;
        }
+       .web-name{
+        font-size: 2rem;
+        color:white;
+    }
       }
       @media screen and (max-width: 768px) {
     
