@@ -4,6 +4,9 @@
     box-sizing: border-box;
     
     }
+    html {
+        scroll-behavior: smooth;
+      }
     body{
         background-color:white;
         font-size: 1rem;
@@ -114,6 +117,86 @@
 
 
       
+      
+      a {
+        border-radius: .25rem;
+        text-align: center;
+        display: inline-block;
+        font-family: 'Inconsolata', monospace;
+        color: white;
+        background-color: pink;
+        text-decoration: none;
+        transition: all .3s;
+      }
+      
+      a:hover {
+        opacity: .5;
+      }
+      
+      .blogs {
+        padding: 2rem;
+      }
+      
+      .blogs > ul {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+       
+      }
+      
+      .blogs > ul > li {
+        border-radius: .5rem;
+
+        border: 1px solid powderblue;
+       
+      }
+      
+      .blogs> ul > li > figure {
+        position: relative;
+        max-height: 225px;
+        overflow: hidden;
+        
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+        
+      }
+      
+      .blogs> ul > li > figure > img {
+        width: 100%;
+      }
+      
+      .blogs > ul > li > figure > figcaption {
+        
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        font-family: 'Inconsolata', monospace;
+        color: pink;
+        background-color:white (0,0,0,.7);
+       
+      }
+      
+      .blogs > ul > li > figure > figcaption > h3 {
+        padding: .75rem;
+        font-size: 1.25rem;
+        font-family: 'Inconsolata', monospace;
+        color: white;
+        
+      }
+      
+      .blogs > ul > li > p {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 1rem .75rem;
+        font-family: 'Inconsolata', monospace;
+        color: pink;
+      }
+      
+      .blogs> ul > li > a {
+        padding: .5rem 1rem;
+        margin: .5rem;
+        font-family: 'Inconsolata', monospace;
+      }
     
     
     
