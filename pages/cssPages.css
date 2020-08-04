@@ -8,6 +8,7 @@
         background-color:white;
         font-size: 1rem;
         line-height: 1.5;
+
     }
     .main-menu{
         background-color: #ffc7d7;
@@ -69,10 +70,13 @@
     .page-header h1{
         font: size 2rem;;
         line-height:1.5;
+        font-family: 'Inconsolata', monospace;
+        align-items: center;
       }
       
       .page-header p{
         font-size:20px;
+        align-items: center;
       }
       
     .gobtn{
@@ -99,6 +103,7 @@
         max-width: 700px;
         margin: 0 auto;
         padding: 1em 2em 2em;
+        font-family: 'Inconsolata', monospace;
       }
     
     
