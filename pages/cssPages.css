@@ -243,6 +243,14 @@
         transform: translateX(0%);
     }
     
+    @media (max-width: 500px) {
+
+    }
+    
+    
+    
+    
+    
     @keyframes linksFade{
         from{
             opacity: 0;
