@@ -1,160 +1,177 @@
 *{
-margin:0rem;
-padding: 0rem;
-box-sizing: border-box;
-
-}
-body{
-    background-color:white;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-.main-menu{
-    background-color: #ffc7d7;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 10vh;
-    font-family: 'Inconsolata', monospace;
-
-}
-.links{
-    display: flex;
-    justify-content: space-around;
-    align-items: center; 
-    text-decoration: none;
-    width: 50%;
-}
-.links li{
-    list-style: none;
-}
-
-.links a{
-    color:white;
-    letter-spacing: 0.3rem;
-    text-decoration: none;
-
-}
-
-.web-name{
-    font-size: 4rem;
-    color:white;
-}
-
-.mobile-menu{
-    cursor: pointer;
-    display: none;
-
-}
-
-.mobile-menu div{
-    background-color:white; 
-    margin:0.3rem;
-   width: 1.5rem;
-
-   height:0.19rem ;
-
-}
-
-.start{
-    margin: auto;
-    height: 100%;
-    width: 100%;
-    background: url();
-
-}
-.page-header{
-    background-image: url('../Pictures/wallpaperflare.com_wallpaper\ \(1\).jpg');
-    padding:0 20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    height: 100vh;
-    background-size: cover;
-    background-position:center ;
-}
-
-.page-header h1{
-    font: size 2rem;;
-    line-height:1.5;
-  }
-  
-  .page-header p{
-    font-size:20px;
-  }
-  
-.gobtn{
-    font-size:1rem;
-    padding:20px 20px;
-    border-radius:10px;
-    margin-top:20px;
-    color:white;
-    background-color: pink;
-    border:#b1d5f8 3px solid;
-   
-    text-decoration:none;
-  }
-  
-.gobtn:hover{
-    background:#b1d5f8;
-    color:white;
-  }
-  article{
-    display: flex;
-    background-color: #b1d5f8;
-    flex-direction: column;
-    width: 80%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 1em 2em 2em;
-  }
-
-
-
-  @media screen and (max-width: 1024px) {
-   .links{
-       width: 70%;
-   }
-  }
-  @media screen and (max-width: 768px) {
-
-
-      .links{
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;     
-        position: absolute;
-        right: 0rem;
-        bottom:5px;
-        height: 90vh;
-        transition: transform 0.6s ease-in;
-       transform: translateX(100%);
-       background-color: #ffc7d7;
-}
-   .links li{
-       opacity: 0;
-   }
-
-   .mobile-menu{
-       display: block;
-   }
-}
-.nav-active{
-   
-    transform: translateX(0%);
-}
-
-@keyframes linksFade{
-    from{
-        opacity: 0;
-        transform: translate (50px);
-    }to{
-        opacity: 1;
-        transform: translate (0px);
+    margin:0rem;
+    padding: 0rem;
+    box-sizing: border-box;
+    
     }
-}
-
+    body{
+        background-color:white;
+        font-size: 1rem;
+        line-height: 1.5;
+        font-family: 'Inconsolata', monospace;
+    }
+    .main-menu{
+        background-color: #ffc7d7;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 10vh;
+        font-family: 'Inconsolata', monospace;
+    
+    }
+    .links{
+        display: flex;
+        justify-content: space-around;
+        align-items: center; 
+        text-decoration: none;
+        width: 50%;
+    }
+    .links li{
+        list-style: none;
+    }
+    
+    .links a{
+        color:white;
+        letter-spacing: 0.3rem;
+        text-decoration: none;
+    
+    }
+    
+    .web-name{
+        font-size: 4rem;
+        color:white;
+    }
+    
+    .mobile-menu{
+        cursor: pointer;
+        display: none;
+    
+    }
+    
+    .mobile-menu div{
+        background-color:white; 
+        margin:0.3rem;
+       width: 1.5rem;
+    
+       height:0.19rem ;
+    
+    }
+    
+    .start{
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background: url();
+    
+    }
+    .page-header{
+        background-image: url('../Pictures/wallpaperflare.com_wallpaper\ \(1\).jpg');
+        padding:0 20px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        height: 100vh;
+        background-size: cover;
+        background-position:center ;
+    }
+    
+    .page-header h1{
+        font: size 2rem;;
+        line-height:1.5;
+      }
+      
+      .page-header p{
+        font-size:20px;
+      }
+      
+    .gobtn{
+        font-size:1rem;
+        padding:20px 20px;
+        border-radius:10px;
+        margin-top:20px;
+        color:white;
+        background-color: pink;
+        border:#b1d5f8 3px solid;
+       
+        text-decoration:none;
+      }
+      
+    .gobtn:hover{
+        background:#b1d5f8;
+        color:white;
+      }
+      article{
+        display: flex;
+        background-color: #b1d5f8;
+        flex-direction: column;
+        width: 80%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 1em 2em 2em;
+      }
+    
+    /*320px.
+    480px.
+    600px.
+    768px.
+    900px.
+    1024px.
+    1200px*/
+     @media screen and (max-width: 1200px) {
+       .links{
+           width: 70%;
+       }
+    
+       .web-name{
+         font-size:2rem;
+       }
+      }
+      @media screen and (max-width: 1024px) {
+       .links{
+           width: 70%;
+       }
+        .web-name{
+         font-size:2rem;
+       }
+      }
+      @media screen and (max-width: 768px) {
+    
+    
+          .links{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;     
+            position: absolute;
+            right: 0rem;
+            bottom:5px;
+            height: 90vh;
+            transition: transform 0.6s ease-in;
+           transform: translateX(100%);
+           background-color: #ffc7d7;
+    }
+       .links li{
+           opacity: 0;
+       }
+    
+       .mobile-menu{
+           display: block;
+       }
+    }
+    .nav-active{
+       
+        transform: translateX(0%);
+    }
+     @media screen and (max-width: 768px) {}
+    @keyframes linksFade{
+        from{
+            opacity: 0;
+            transform: translate (50px);
+        }to{
+            opacity: 1;
+            transform: translate (0px);
+        }
+    }
