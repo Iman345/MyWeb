@@ -1,0 +1,283 @@
+*{
+    margin:0rem;
+    padding: 0rem;
+    box-sizing: border-box;
+    
+    }
+    html {
+        scroll-behavior: smooth;
+      }
+      
+    body{
+        background-color:white;
+        font-size: 1rem;
+        line-height: 1.5;
+
+    }
+    .main-menu{
+        background-color: #ffc7d7;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 10vh;
+        font-family: 'Inconsolata', monospace;
+    
+    }
+    .links{
+        display: flex;
+        justify-content: space-around;
+        align-items: center; 
+        text-decoration: none;
+        width: 50%;
+    }
+    .links li{
+        list-style: none;
+    }
+    
+    .links a{
+        color:white;
+        letter-spacing: 0.3rem;
+        text-decoration: none;
+    
+    }
+    
+    .web-name{
+        font-size: 4rem;
+        color:white;
+    }
+    
+    .mobile-menu{
+        cursor: pointer;
+        display: none;
+    
+    }
+    
+    .mobile-menu div{
+        background-color:white; 
+        margin:0.3rem;
+       width: 1.5rem;
+    
+       height:0.19rem ;
+    
+    }
+    
+    .start{
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background: url();
+    
+    }
+    
+    
+    .page-header h1{
+        font: size 2rem;;
+        line-height:1.5;
+        font-family: 'Inconsolata', monospace;
+        align-items: center;
+        text-align: center;
+    
+      }
+      
+      .page-header p{
+        font-size:20px;
+        align-items: center;
+        text-align: center;
+        font-family: 'Inconsolata', monospace;
+
+      }
+      
+    .gobtn{
+        font-size:1rem;
+        padding:20px 20px;
+        border-radius:10px;
+        margin-top:20px;
+        color:white;
+        background-color: #ffc7d7;
+        border:#b1d5f8 3px solid;
+       
+        text-decoration:none;
+      }
+      
+    .gobtn:hover{
+        background:#b1d5f8;
+        color:white;
+      }
+      article{
+        display: flex;
+        background-color: #b1d5f8;
+        flex-direction: column;
+        width: 80%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 1em 2em 2em;
+        font-family: 'Inconsolata', monospace;
+      }
+
+
+
+      
+      
+      a {
+        border-radius: .25rem;
+        text-align: center;
+        display: inline-block;
+        font-family: 'Inconsolata', monospace;
+        color: white;
+        background-color: #ffc7d7;
+        text-decoration: none;
+        transition: all .3s;
+      }
+      
+      a:hover {
+        opacity: .5;
+      }
+      
+      .blogs {
+        padding: 2rem;
+      }
+      
+      .blogs > ul {
+        display: grid;
+        grid-gap: 1rem;
+        list-style: none;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+       
+      }
+      
+      .blogs > ul > li {
+        border-radius: .5rem;
+          list-style: none;
+        border: 3px solid #ffc7d7;
+       
+      }
+      
+      .blogs> ul > li > figure {
+        position: relative;
+        max-height: 225px;
+        overflow: hidden;
+        
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+        
+      }
+      
+      .blogs> ul > li > figure > img {
+        width: 100%;
+      }
+      
+      .blogs > ul > li > figure > figcaption {
+        
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        font-family: 'Inconsolata', monospace;
+        background-color:#ffc7d7;
+       
+      }
+      
+      .blogs > ul > li > figure > figcaption > h3 {
+        padding: .75rem;
+        font-size: 1.25rem;
+        font-family: 'Inconsolata', monospace;
+        color: white;
+        
+      }
+      
+      .blogs > ul > li > p {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 1rem .75rem;
+        font-family: 'Inconsolata', monospace;
+        color: #ffc7d7;
+      }
+      
+      .blogs> ul > li > a {
+        padding: .5rem 1rem;
+        margin: .5rem;
+        text-decoration: none;
+        font-family: 'Inconsolata', monospace;
+      }
+    
+    
+    
+      @media screen and (max-width: 1024px) {
+       .links{
+           width: 70%;
+       }
+       .web-name{
+        font-size: 2rem;
+        color:white;
+    }
+      }
+      @media screen and (max-width: 768px) {
+    
+        .web-name{
+            font-size: 1rem;
+            color:white;
+        }
+          .links{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;     
+            position: absolute;
+            right: 0rem;
+            bottom:5px;
+            height: 90vh;
+            transition: transform 0.6s ease-in;
+           transform: translateX(100%);
+           background-color: #ffc7d7;
+    }
+       .links li{
+           opacity: 0;
+       }
+    
+       .mobile-menu{
+           display: block;
+       }
+    }
+    .nav-active{
+       
+        transform: translateX(0%);
+    }
+    
+    
+    @media screen and (max-width: 500px) {
+
+      .page-header h1{
+         font-size:1rem;;
+         line-height:2;
+         font-family: 'Inconsolata', monospace;
+         align-items: center;
+         text-align: center;
+     
+       }
+       
+       .page-header p{
+         font-size:15px;
+         align-items: center;
+         text-align: center;
+         font-family: 'Inconsolata', monospace;
+ 
+       }
+
+       p{
+           font-size:0.8rem;
+       }
+     }
+    
+    
+    
+    
+    
+    @keyframes linksFade{
+        from{
+            opacity: 0;
+            transform: translate (50px);
+        }to{
+            opacity: 1;
+            transform: translate (0px);
+        }
+    }
