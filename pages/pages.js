@@ -16,3 +16,25 @@ menuitems.forEach((link, index)=> {
 
 }
 menuOpen();
+document.getElementById('backButton').addEventListener('click', () => {
+    history.back();
+  });
+  
+  
+  Topbutton = document.getElementById("Topbtn");
+  
+  
+  window.onscroll = function() {scrollupFunction()};
+  
+  function scrollupFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      Topbutton.style.display = "block";
+    } else {
+      Topbutton.style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0; 
+    document.documentElement.scrollTop = 0; 
+  }
+  
