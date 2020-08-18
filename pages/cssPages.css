@@ -241,7 +241,16 @@
         color:white;
       }
           
-    
+      p {
+        margin-top: 1rem ;
+        margin-bottom: 1rem ; 
+        line-height:1.5rem;}
+      
+        .h-entry ul li{
+            text-decoration:none;
+            list-style:none;
+        }
+          
       @media screen and (max-width: 1024px) {
        .links{
            width: 70%;
