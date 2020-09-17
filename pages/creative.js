@@ -1,9 +1,2 @@
 
-const svg=d3.select("#chart").append("svg")
-.attr("width",500)
-.attr("height",500)
-
-svg.append("square")
-.attr("width",200)
-.attr("width",200)
-.attr("fill", "pink")
+console.log(d3);
