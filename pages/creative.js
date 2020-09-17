@@ -2,7 +2,8 @@
 //let margin = 50;
 let vizArea=d3.select('#Viz');
 let xScale=d3.scaleLinear().domain([0,100]).range([0,500]);
-console.log(xScale(5)+'px');
+let yScale=d3.scaleLinear().domain([0,100]).range([500,0]);
+
 
 vizArea
 .append('g')
