@@ -1,17 +1,17 @@
 
-
+//let margin = 50;
 let vizArea=d3.select('#Viz');
 let xScale=d3.scaleLinear().domain([0,100]).range([0,500]);
 console.log(xScale(5)+'px');
 
 vizArea
 .append('g')
-.attr("transform", 'translate(50,0)')
-.call(d3.axisRight(xScale));
+.attr("transform", 'translate(50,10)')
+.call(d3.axisLeft(yScale));
 
 vizArea
 .append('g')
-.attr("transform", 'translate(50,0)')
+.attr("transform", 'translate(50,500)')
 .call(d3.axisBottom(xScale));
 
 vizArea
