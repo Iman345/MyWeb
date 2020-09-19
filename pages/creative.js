@@ -1,5 +1,5 @@
 
-let marg = 50;
+/*let marg = 50;
 let topmarg=10;
 let vizArea=d3.select('#Viz');
 let xScale=d3.scaleLinear().domain([0,100]).range([0,500]);
@@ -55,3 +55,39 @@ vizArea
 */
 
 
+let margin = { Left: 100, Right: 10, Top: 10, Bottom: 130 }
+let width = 600 - margin.left - margin.right
+let height = 400 - margin.Top - margin.Bottom
+let vizArea=d3.select('#Viz');
+
+vizArea
+.attr("width", width + margin.left+ margin.right)
+.attr("height", height + margin.top + margin.bottom)
+
+vizArea
+.append('g')
+.attr("transform", `translate(${margin.left}, ${margin.top})`)
+
+vizArea
+g.append("text")
+  .attr("class", "x axis-label")
+  .attr("x", width / 2)
+  .attr("y", height + 110)
+  .attr("font-size", "20px")
+  .attr("text-anchor", "middle")
+  .text("Queens Heights")
+
+  vizArea
+g.append("text")
+  .attr("class", "y axis-label")
+  .attr("x", - (height / 2))
+  .attr("y", -60)
+  .attr("font-size", "20px")
+  .attr("text-anchor", "middle")
+  .attr("transform", "rotate(-90)")
+  .text("Heights (feet)")
+
+d3.json("files.json").then(data => {
+  data.forEach(d => {
+    d.height = Number(d.height)})
+})
