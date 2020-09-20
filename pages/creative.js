@@ -55,39 +55,50 @@ vizArea
 */
 
 
-let margin = { Left: 100, Right: 10, Top: 10, Bottom: 130 }
-let width = 600 - margin.left - margin.right
-let height = 400 - margin.Top - margin.Bottom
-let vizArea=d3.select('#Viz');
+let margin = {top: 30, right: 30, bottom: 70, left: 60},
+width = 460 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
 
-vizArea
-.attr("width", width + margin.left+ margin.right)
-.attr("height", height + margin.top + margin.bottom)
 
-vizArea
-.append('g')
-.attr("transform", `translate(${margin.left}, ${margin.top})`)
+var svg = d3.select("#Viz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-vizArea
-g.append("text")
-  .attr("class", "x axis-label")
-  .attr("x", width / 2)
-  .attr("y", height + 110)
-  .attr("font-size", "20px")
-  .attr("text-anchor", "middle")
-  .text("Queens Heights")
 
-  vizArea
-g.append("text")
-  .attr("class", "y axis-label")
-  .attr("x", - (height / 2))
-  .attr("y", -60)
-  .attr("font-size", "20px")
-  .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-90)")
-  .text("Heights (feet)")
+d3.csv("Heights.csv", function(data) {
 
-d3.json("files.json").then(data => {
-  data.forEach(d => {
-    d.height = Number(d.height)})
+
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(function(d) { return d.Names; }))
+  .padding(0.2);
+
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+var y = d3.scaleLinear()
+  .domain([0, 13000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+
+svg.selectAll("heightbar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.Names); })
+    .attr("y", function(d) { return y(d.Value); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Value); })
+    .attr("fill", "#ffaabf")
+
 })
