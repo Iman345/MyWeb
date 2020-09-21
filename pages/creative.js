@@ -66,7 +66,7 @@ const handlequote = (quoteDetails) => {
     document.querySelector("p").innerText = quoteDetails.content+"-"+ quoteDetails.author;
     };
 */
-const coinapi= 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05';
+/*const coinapi= 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05';
 document.addEventListener("DOMContentLoaded", function(coins){
 fetch(coinapi)
 
@@ -148,4 +148,12 @@ g.append("path")
 .attr("d", line)
 }
 
+*/
 
+const api= 'https://api.coindesk.com/v1/bpi/historical/close.json'
+
+async function getBpi(){
+    const response = await fetch(api);
+    const coindata= await response.json();
+    console.log(coindata);
+}
