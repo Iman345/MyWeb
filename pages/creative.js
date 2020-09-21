@@ -66,11 +66,12 @@ const handlequote = (quoteDetails) => {
     document.querySelector("p").innerText = quoteDetails.content+"-"+ quoteDetails.author;
     };
 */
+const coinapi= 'https://api.coindesk.com/v1/bpi/historical/close.json';
 document.addEventListener("DOMContentLoaded", function(coins){
-fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+fetch(coinapi)
 
 .then(function(response) {return response.json();})
-then(function(data){
+then(function(coindata){
     var pData = parseData(coindata);
     linegraph(pData);
 })
