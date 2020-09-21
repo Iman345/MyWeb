@@ -66,7 +66,7 @@ const handlequote = (quoteDetails) => {
     document.querySelector("p").innerText = quoteDetails.content+"-"+ quoteDetails.author;
     };
 */
-const coinapi= 'https://api.coindesk.com/v1/bpi/historical/close.json';
+const coinapi= 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05';
 document.addEventListener("DOMContentLoaded", function(coins){
 fetch(coinapi)
 
@@ -111,8 +111,8 @@ vizArea
 .append(g)
 .attr("transform", "translate("+ margin.left+","+margin.top+")");
 
-var xScale=d3.scaleTime().rangeRound([0, Width]);
-var yScale=d3.scaleTime().rangeRound([Height, 0]);
+var xScale=d3.scaleTime().rangeRound([0, graphwidth]);
+var yScale=d3.scaleTime().rangeRound([graphheight, 0]);
 
 
 let drawlines=d3.line()
@@ -122,7 +122,7 @@ xScale.domain(d3.extent(coindata, function(d){return d.date}));
 yScale.domain(d3.extent(coindata, function(d){return d.value}));
 
 g.append("g")
-.attr("transform", "translate(0,"+ Height+")")
+.attr("transform", "translate(0,"+ graphheight+")")
 .call(d3.axisBotton(xScale))
 .select(".domain")
 .remove();
