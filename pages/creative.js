@@ -92,16 +92,16 @@ function parseData(coindata){
 
 function linegraph(coindata){
    
- let margin={top:20, right:20, bottom:30, left:50};
+ var margin={top:20, right:20, bottom:30, left:50};
 
-let Width=600;
+var Width=600;
 
-let Height=600;
+var Height=600;
 
-let graphwidth = Width-margin.left-margin.right;
-let graphheight = Height- margin.top-margin.bottom;
+var graphwidth = Width-margin.left-margin.right;
+var graphheight = Height- margin.top-margin.bottom;
 
-let vizArea=d3.select('#Viz');
+var vizArea=d3.select('#Viz');
 
 vizArea
 .attr("width", Width)
@@ -110,8 +110,8 @@ vizArea
 .append(g)
 .attr("transform", "translate("+ margin.left+","+margin.top+")");
 
-let xScale=d3.scaleTime().rangeRound([0, Width]);
-let yScale=d3.scaleTime().rangeRound([Height, 0]);
+var xScale=d3.scaleTime().rangeRound([0, Width]);
+var yScale=d3.scaleTime().rangeRound([Height, 0]);
 
 
 let drawlines=d3.line()
