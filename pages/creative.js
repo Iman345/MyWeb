@@ -72,7 +72,7 @@ fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
 .then(function(response) {return response.json();})
 then(function(data){
     var pData = parseData(coindata);
-    linechart(pData);
+    linegraph(pData);
 })
   .catch(function(err){console.log(error);})  
 });
