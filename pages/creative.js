@@ -76,6 +76,7 @@ then(function(coindata){
     linegraph(pData);
 })
   .catch(function(err){console.log(error);})  
+  console.log(coindata);
 });
 
 
