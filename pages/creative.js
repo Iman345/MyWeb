@@ -156,6 +156,7 @@ const api= 'https://api.coindesk.com/v1/bpi/historical/close.json'
 async function getBpi(){
     const response = await fetch(api);
     const coindata= await response.json();
-    console.log(coindata);
+    const {bpi}= coindata;
+    console.log(bpi);
 }
 getBpi();
