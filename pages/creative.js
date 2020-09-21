@@ -181,3 +181,127 @@ getBpi();
    console.log(data);
 })*/
 
+/*const frienddata = [
+    { name: 'Iman', height: 5 },
+    { name: 'Nadia', height: 5.7},
+    { name: 'Tashalia', height: 5.3 },
+    { name: 'Amber', height: 5.4 },
+    { name: 'Mark', height: 5.9},
+    { name: 'Johnny', score: 6},
+    
+  ];
+  
+  const width = 900;
+  const height = 450;
+  const margin = { top: 50, bottom: 50, left: 50, right: 50 };
+  
+  const viz = d3.select('#container')
+    .append('viz')
+    .attr('width', width - margin.left - margin.right)
+    .attr('height', height - margin.top - margin.bottom)
+    .attr("viewBox", [0, 0, width, height]);
+  
+  const xScale = d3.scaleBand()
+    .domain(d3.range(frienddata.length))
+    .range([margin.left, width - margin.right])
+    .padding(0.1)
+  
+  const yScale = d3.scaleLinear()
+    .domain([4, 7])
+    .range([height - margin.bottom, margin.top])
+  
+  svg
+    .append("g")
+    .attr("fill", 'pink')
+    .selectAll("rect")
+    .data(frienddata.sort((a, b) => d3.descending(a.height, b.height)))
+    .join("rect")
+      .attr("x", (d, i) => x(i))
+      .attr("y", d => y(d.height))
+      .attr('title', (d) => d.height)
+      .attr("class", "rect")
+      .attr("height", d => y(0) - y(d.score))
+      .attr("width", xScale.bandwidth());
+
+      
+function xAxis(g) {
+    g.attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(xScale).tickFormat(i => frienddata[i].name))
+      .attr("font-size", '20px')
+  }
+  
+  function yAxis(g) {
+    g.attr("transform", `translate(${margin.left}, 0)`)
+      .call(d3.axisLeft(yScale).ticks(null, frienddata.format))
+      .attr("font-size", '20px')
+  }
+  
+
+  
+  svg.append("g").call(xAxis);
+  svg.append("g").call(yAxis);
+  svg.node();
+  */
+
+ var svg = d3.select("#Viz")
+  .append("svg")
+    .attr("width", 1200)
+    .attr("height", 1000)
+var y = d3.scaleLinear()
+    .domain([5, 6])         
+    .range([290, 10]);       
+svg
+  .append("g")
+  .attr("transform", "translate(50,0)")     
+   .call(d3.axisLeft(y));var x = d3.scaleBand()
+    .domain(["Iman", "Tashalia", "Nadia", "Amber", "Lucas"])      
+    .range([100, 500])                      
+    
+    .padding([0.8])
+svg
+  .append("g")
+  .attr("transform", "translate(0,290)")     
+  
+  .call(d3.axisBottom(x));
+
+
+svg
+  .append("rect")
+    .attr("x", x("Iman") )
+    .attr("y",270)
+    .attr("height", 20)
+    .attr("width", x.bandwidth() )
+    .style("fill", "Pink")
+    .style("opacity", 0.5)
+svg
+  .append("rect")
+    .attr("x", x("Tashalia") )
+    .attr("y",220)
+    .attr("height", 70)
+    .attr("width", x.bandwidth() )
+    .style("fill", "Pink")
+    .style("opacity", 0.5)  
+svg
+.append("rect")
+    .attr("x", x("Nadia") )
+    .attr("y",100)
+    .attr("height", 190)
+    .attr("width", x.bandwidth() )
+    .style("fill", "Pink")
+    .style("opacity", 0.5)
+svg
+  .append("rect")
+    .attr("x", x("Amber") )
+    .attr("y",190)
+    .attr("height", 100)
+    .attr("width", x.bandwidth() )
+    .style("fill", "Pink")
+    .style("opacity", 0.5)  
+svg
+  .append("rect")
+    .attr("x", x("Lucas") )
+    .attr("y",0)
+    .attr("height", 290)
+    .attr("width", x.bandwidth() )
+    .style("fill", "Pink")
+    .style("opacity", 0.5) 
