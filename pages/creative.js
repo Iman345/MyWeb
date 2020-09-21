@@ -158,3 +158,4 @@ async function getBpi(){
     const coindata= await response.json();
     console.log(coindata);
 }
+getBpi();
