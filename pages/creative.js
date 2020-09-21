@@ -55,50 +55,95 @@ vizArea
 */
 
 
-let margin = {top: 30, right: 30, bottom: 70, left: 60},
-width = 460 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
-
-
-var svg = d3.select("#Viz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-
-d3.csv("Heights.csv", function(data) {
-
-
-var x = d3.scaleBand()
-  .range([ 0, width ])
-  .domain(data.map(function(d) { return d.Names; }))
-  .padding(0.2);
-
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x))
-  .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
-
-var y = d3.scaleLinear()
-  .domain([0, 13000])
-  .range([ height, 0]);
-svg.append("g")
-  .call(d3.axisLeft(y));
-
-
-svg.selectAll("heightbar")
-  .data(data)
-  .enter()
-  .append("rect")
-    .attr("x", function(d) { return x(d.Names); })
-    .attr("y", function(d) { return y(d.Value); })
-    .attr("width", x.bandwidth())
-    .attr("height", function(d) { return height - y(d.Value); })
-    .attr("fill", "#ffaabf")
-
+/*fetch('https://api.quotable.io/random')
+.then(res => res.json())
+.then(quote => {
+  console.log(`${quote.content} —${quote.author}`)
+  handlequote(quote)
 })
+
+const handlequote = (quoteDetails) => {
+    document.querySelector("p").innerText = quoteDetails.content+"-"+ quoteDetails.author;
+    };
+*/
+document.addEventListener("DOMContentLoaded", function(coins){
+fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+
+.then(function(response) {return response.json();})
+then(function(data){
+    var pData = parseData(coindata);
+    linechart(pData);
+})
+  .catch(function(err){console.log(error);})  
+});
+
+
+
+function parseData(coindata){
+    var arr=[];
+    for (var i in coindata.bpi ){
+        arr.push({ date : new Date(i),
+            value: +data.bpi[i]
+
+        });
+    }
+    return arr
+}
+
+function linegraph(coindata){
+   
+ let margin={top:20, right:20, bottom:30, left:50};
+
+let Width=600;
+
+let Height=600;
+
+let graphwidth = Width-margin.left-margin.right;
+let graphheight = Height- margin.top-margin.bottom;
+
+let vizArea=d3.select('#Viz');
+
+vizArea
+.attr("width", Width)
+.attr("height", Height);
+vizArea
+.append(g)
+.attr("transform", "translate("+ margin.left+","+margin.top+")");
+
+let xScale=d3.scaleTime().rangeRound([0, Width]);
+let yScale=d3.scaleTime().rangeRound([Height, 0]);
+
+
+let drawlines=d3.line()
+.xScale(function(d){return xScale(d.date)})
+.yScale(function(d){return yScale(d.value)})
+xScale.domain(d3.extent(coindata, function(d){return d.date}));
+yScale.domain(d3.extent(coindata, function(d){return d.value}));
+
+g.append("g")
+.attr("transform", "translate(0,"+ Height+")")
+.call(d3.axisBotton(xScale))
+.select(".domain")
+.remove();
+
+g.append("g")
+.call(d3.axisLeft(yScale))
+.append("text")
+.attr("fill", "#000")
+.attr("y", 6)
+.attr("dy", "0.71em")
+.attr("text-anchor", "end")
+.text("Price (Dollars)");
+
+
+g.append("path")
+.datum(data)
+.attr("stroke", "pink")
+.attr ("fill", "none")
+.attr("stroke-lingejoin","round")
+.attr("stroke-linecap", "round")
+.attr("stroke-width", 2)
+.attr("d", line)
+}
+
+
