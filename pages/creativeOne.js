@@ -52,3 +52,47 @@ var covidOne = [
   {group: "Total Recovered", value: 5884},
   {group: "New Deaths", value: 28339727 }
 ];
+
+
+
+    var svg = d3.select("#barchart")
+ 
+    var margin = {top: 20, right: 20, bottom: 40, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var svg = d3.select("#barchart")
+  
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+
+var xaxis = d3.scaleLinear().domain([0, 100]).range([0, width]);
+svg
+  .append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(xaxis));
+
+
+var yaxis = d3.scaleLinear().domain([0, 100]).range([ height, 0]);
+svg
+  .append("g")
+  .call(d3.axisLeft(yaxis));
+
+// Add X axis label:
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("xaxis", width)
+    .attr("yaxis", height + margin.top + 20)
+    .text("Titles");
+
+// Y axis label:
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("yaxis", -margin.left+20)
+    .attr("xaxis", -margin.top)
+    .text("Value")
