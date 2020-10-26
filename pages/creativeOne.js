@@ -74,10 +74,10 @@ var svg = d3.select("#barchart")
           "translate(" + margin.left + "," + margin.top + ")");
 
 
-var xaxis = d3.scaleLinear().domain(["Recoveries", "Deaths", "Total Deaths", "New Recoveries", "Cases"]).range([0, width]);
+var xaxis = d3.scaleLinear().domain([0, 100]).range([0, width]);
 svg
   .append("g")
-  .domain(["Recoveries", "Deaths", "Total Deaths", "New Recoveries", "Cases"])      
+      
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(xaxis));
 
