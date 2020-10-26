@@ -247,6 +247,7 @@ function xAxis(g) {
   svg.node();
   */
 
+  console.log(d3);
  var svg = d3.select("#Viz")
   .append("svg")
     .attr("width", 1200)

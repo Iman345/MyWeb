@@ -4,7 +4,7 @@ fetch("https://api.covid19api.com/summary")
   console.log(coviddata)
  
 })
-
+console.log(d3);
 
 /*const Covdata = [
     { Title :"NewConfirmed", Number:468460},
