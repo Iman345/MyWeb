@@ -56,9 +56,13 @@ var covidOne = [
 
 
     var svg = d3.select("#barchart")
+  
+  .append("svg")
+    .attr("width", 1200)
+    .attr("height", 1000)
  
     var margin = {top: 20, right: 20, bottom: 40, left: 60},
-    width = 460 - margin.left - margin.right,
+    width = 500 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 var svg = d3.select("#barchart")
@@ -70,9 +74,10 @@ var svg = d3.select("#barchart")
           "translate(" + margin.left + "," + margin.top + ")");
 
 
-var xaxis = d3.scaleLinear().domain([0, 100]).range([0, width]);
+var xaxis = d3.scaleLinear().domain(["Recoveries", "Deaths", "Total Deaths", "New Recoveries", "Cases"]).range([0, width]);
 svg
   .append("g")
+  .domain(["Recoveries", "Deaths", "Total Deaths", "New Recoveries", "Cases"])      
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(xaxis));
 
