@@ -6,8 +6,8 @@ fetch("https://api.covid19api.com/summary")
 })
 
 
-const Covdata = [
-    { Title :"NewConfirmed", Number:"468460"},
+/*const Covdata = [
+    { Title :"NewConfirmed", Number:468460},
     { Title : "TotalConfirmed",Number:41688829 },
     {  Title : "NewDeaths",Number:5884},
     { Title :"TotalRecovered", Number:28339727 },
@@ -27,7 +27,7 @@ const Covdata = [
   .range([BarArea.height, 0]).nice();
 
 var xsc =d3.scaleBand()
-.domain(Covdata.map(function(d){reutrn ;d.Title}))
+.domain(Covdata.map(function(d){reutrn d.Title}))
 .range([0, BarArea.width])
 .pad(0.2);
 
@@ -38,3 +38,17 @@ var xAxis = svg.append("g")
     
 )
 .call (d3.axisBottom(xsc));
+
+var yax=d3.axisLeft(ysc);
+var yAxis = svg.append("g")
+.classed("yaxis", true) 
+.attr()
+
+*/
+
+var covidOne = [
+  {group: "New Confirmed", value: 468460},
+  {group: "Total Confirmed", value: 41688829},
+  {group: "Total Recovered", value: 5884},
+  {group: "New Deaths", value: 28339727 }
+];
