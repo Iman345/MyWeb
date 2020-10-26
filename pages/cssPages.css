@@ -7,6 +7,8 @@
     html {
         scroll-behavior: smooth;
       }
+
+     ul.list{list-style-type: circle};
       
     body{
         background-color:white;
