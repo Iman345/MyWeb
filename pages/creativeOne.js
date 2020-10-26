@@ -82,17 +82,3 @@ svg
   .append("g")
   .call(d3.axisLeft(yaxis));
 
-// Add X axis label:
-svg.append("text")
-    .attr("text-anchor", "end")
-    .attr("xaxis", width)
-    .attr("yaxis", height + margin.top + 20)
-    .text("Titles");
-
-// Y axis label:
-svg.append("text")
-    .attr("text-anchor", "end")
-    .attr("transform", "rotate(-90)")
-    .attr("yaxis", -margin.left+20)
-    .attr("xaxis", -margin.top)
-    .text("Value")
