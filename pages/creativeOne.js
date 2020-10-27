@@ -95,7 +95,7 @@ var svg = d3.select("#barchart")
 
 
 var x = d3.scaleBand()
-    .domain(["Total Deaths", "New Cases", "Total Cases", "New Recoveries", "New Deaths"])        
+    .domain(["New Confirmed", "Total Confirmed", "Total Recovered", "New Deaths"])        
     .range([0, 800]);        
 
 

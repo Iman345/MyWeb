@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>  
+    <script type="module" src= "pages.js" async></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="module" src= "creativeOne.js" async></script>
+    
+     <link rel="stylesheet" type="text/css" href="cssPages.css">
+
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
+     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+     
+     
+     
+     
+     
+     
+     <title>My Web</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="description" content="Data Visualization and Web Dev Blogs">
+<meta property="author" content="Iman Raffee">
+
+</head> 
+<body>
+
+  
+ <nav class="main-menu">
+     
+     <div class="web-name">
+         
+         <h3>My Website</h3>
+     </div>
+
+     
+<ul class="links"> 
+    <li><a href="home.html" >Home</a> </li>
+    <li><a href="about.html" >About</a> </li>
+    <li><a href="bloghome.html" >Blogs</a> </li>
+    <li><a href="contact.html" >Contact</a> </li>
+    
+</ul>
+
+<div class="mobile-menu">
+    <div class="l1"></div>
+    <div class="l2"></div>
+    <div class="l3"></div>
+
+    </div>
+</div>
+
+ </nav>
+
+<main>
+<header class="page-header"><h1>Data Vizualization One</h1>
+    <p>Here we have a data Vizualization showing the following :</p>
+
+</header>
+   
+    <section class="intro">
+        <article class="h-entry" >
+         
+            <header class="article-header">
+                <h2 class = "article-name"> Bar graph</h2>
+               
+              </header>
+    
+              <a id="Topbtn" title="scrollUp" href="#">&#94;</a>
+    
+    </article>
+    </section>
+    
+    <section class="CovidBarChart"></section>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+
+<div id="covidBar"></div>
+
+<script>
+
+
+
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 600 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
+
+
+var svg = d3.select("#covidBar")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.csv("data.csv", function(data) {
+
+
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(function(d) { return d.Province; }))
+  .padding(0.2);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+
+var y = d3.scaleLinear()
+  .domain([0, 6000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+
+svg.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.Province); })
+    .attr("y", function(d) { return y(d.Value); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Value); })
+    .attr("fill", "#69b3a2")
+
+})
+
+    
+  
+    
+</script>
+</main>
+<button id='backButton'>Back</button>
+
+</body>
+</html>
