@@ -46,7 +46,7 @@ var yAxis = svg.append("g")
 
 */
 
-var covidOne = [
+/*var covidOne = [
   {group: "New Confirmed", value: 468460},
   {group: "Total Confirmed", value: 41688829},
   {group: "Total Recovered", value: 5884},
@@ -87,3 +87,43 @@ svg
   .append("g")
   .call(d3.axisLeft(yaxis));
 
+*/
+var svg = d3.select("#barchart")
+  .append("svg")
+    .attr("width", 1200)
+    .attr("height", 900)
+
+
+var x = d3.scaleBand()
+    .domain(["Total Deaths", "New Cases", "Total Cases", "New Recoveries", "New Deaths"])        
+    .range([0, 800]);        
+
+
+svg
+  .append("g")
+  .attr("transform", "translate(100,300)")     
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,10)rotate(-45)")
+    .style("text-anchor", "end")
+    .style("font-size", 20)
+    .style("fill", "#ffc7d7")
+
+
+
+var y = d3.scaleLinear()
+    .domain([0, 10000])        
+    .range([290, 10]);        
+
+
+svg
+  .append("g")
+  .attr("transform", "translate(100,10)")     
+  .call(d3.axisLeft(y));svg
+  .append("rect")
+    .attr("10", x("New Deaths") )
+    .attr("y",1)
+    .attr("height", 150)
+    .attr("width", x.bandwidth() )
+    .style("fill", "#ffc7d7")
+    .style("opacity", 0.5)
