@@ -1,7 +1,7 @@
 
 console.log(d3);
-const width = 900;
-const height = 600;
+const width = 1000;
+const height = 800;
 
 const svg = d3.select('body')
 .append('svg')
