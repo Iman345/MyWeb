@@ -252,7 +252,7 @@
             text-decoration:none;
             list-style:none;
         }
-          
+        
       @media screen and (max-width: 1024px) {
        .links{
            width: 70%;

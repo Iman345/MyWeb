@@ -76,6 +76,8 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 
+
+
 <div id="covidBar"></div>
 
 <script>
@@ -117,29 +119,75 @@ var y = d3.scaleLinear()
 svg.append("g")
   .call(d3.axisLeft(y));
 
+  var Tooltip = d3.select("#covidBar")
+    .append("div")
+.style("opacity", 0)
+  .attr("class", "tooltip")
+    
+  
+  .style("background-color", "pink")
+    .style("border", "solid")
+  .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  
+  var mousehover = function(d) {
+    Tooltip
+.style("opacity", 1)
+    d3.select(this)
+    .style("opacity", 1)
+      .style("stroke", "black")
+      
+  }
+  var mouseon = function(d) {
+    Tooltip
+ .html("The total amount of deaths caused by COVID19 in "+d.Province+ " is: " + d.Value)
+  .style("left", (d3.mouse(this)[0]+100) + "px") 
+      .style("top", (d3.mouse(this)[1]) + "px")
+      
+  }
+  var mousegone = function(d) {
+    Tooltip .style("opacity", 0)
+    
+    d3.select(this)
+    .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
 
 svg.selectAll("mybar")
   .data(data)
   .enter()
+
+
   .append("rect")
     .attr("x", function(d) { return x(d.Province); })
     .attr("y", function(d) { return y(d.Value); })
     .attr("width", x.bandwidth())
+    .attr("class", "bar")
     .attr("height", function(d) { return height - y(d.Value); })
     .attr("fill", "#ffc7d7")
-
+    .on("mouseover", mousehover)
+    .on("mousemove", mouseon)
+    .on("mouseleave", mousegone)
+    
 })
 
     
 </script>
 
+
+  
+ 
 <style>
-  .mybar:hover {
-	fill:#b1d5f8;
-}
+  .bar:hover{
+fill: #b1d5f8;
+
+  }
+
+
 </style>
 
-<button id='backButton'>Back</button>
 
 </main>
 </body>
