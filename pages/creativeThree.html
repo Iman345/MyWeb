@@ -76,10 +76,10 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 
-
+<section class="barsection">
 
 <div id="covidBar"></div>
-
+</section>
 <script>
 
 
@@ -173,7 +173,9 @@ svg.selectAll("mybar")
     
 })
 
-    
+
+
+
 </script>
 
 
@@ -185,6 +187,27 @@ fill: #b1d5f8;
 
   }
 
+
+.tooltip {
+  color:white;
+
+font-family: 'Inconsolata', monospace;
+text-align: center;
+ padding: .5rem;
+ position: absolute;
+ border: 3px solid #b1d5f8;
+border-radius: 5px;
+     pointer-events: none;
+     font-size: 1.3rem;
+}
+
+.barsection{
+  width: 800px;
+    margin: 20px auto;
+   
+   
+  
+}
 
 </style>
 
