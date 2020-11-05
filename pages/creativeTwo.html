@@ -3,7 +3,7 @@
  <head>  
     <script type="module" src= "pages.js" async></script>
     
-    <script type="module" src= "creativeOne.js" async></script>
+   
     
      <link rel="stylesheet" type="text/css" href="cssPages.css">
 
@@ -127,6 +127,10 @@
 var color = d3.scaleOrdinal()
    .domain(data)
     .range(d3.schemePastel2 );
+
+
+
+
     mapping
 .enter()
   .append('path')
@@ -145,6 +149,12 @@ mapping
   .exit()
 .remove() }
   change(deaths)
+
+ 
+
+
+
+
 
   var Svg = d3.select("#legendsvg")
 
@@ -184,6 +194,8 @@ Svg.selectAll("labels")
     .style("alignment-baseline", "middle")
 
   
+
+    
   
   </script>
 
