@@ -1,0 +1,233 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+     <head>  
+        <script type="module" src= "pages.js" async></script>
+        
+      
+        
+         <link rel="stylesheet" type="text/css" href="cssPages.css">
+    
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
+         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+         
+         
+         
+         
+         
+         
+         <title>My Web</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="description" content="Data Visualization and Web Dev Blogs">
+    <meta property="author" content="Iman Raffee">
+    
+    </head> 
+    <body>
+    
+      
+     <nav class="main-menu">
+         
+         <div class="web-name">
+             
+             <h3>My Website</h3>
+         </div>
+    
+         
+    <ul class="links"> 
+        <li><a href="home.html" >Home</a> </li>
+        <li><a href="about.html" >About</a> </li>
+        <li><a href="bloghome.html" >Blogs</a> </li>
+        <li><a href="contact.html" >Contact</a> </li>
+        
+    </ul>
+    
+    <div class="mobile-menu">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l3"></div>
+    
+        </div>
+    </div>
+    
+     </nav>
+    
+    <main>
+    <header class="page-header"><h1>Data Vizualization Five</h1>
+        <p>Here we have a data Vizualization showing the following :</p>
+    
+    </header>
+       
+        <section class="intro">
+            <article class="h-entry" >
+             
+                <header class="article-header">
+                    <h2 class = "article-name">Line graph Covid Cases in March</h2>
+                   
+                  </header>
+        
+                  <a id="Topbtn" title="scrollUp" href="#">&#94;</a>
+        
+        </article>
+        </section>
+    
+    
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    
+<section class="linesec">
+
+    <div id="linechart"></div>
+
+
+    <script>
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+width = 900 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
+var svg = d3.select("#linechart")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+   
+d3.csv("linedata.csv",function(d){return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }},function(data) 
+{
+var x = d3.scaleTime()
+.domain(d3.extent(data, function(d) { return d.date; }))
+.range([ 0, width ]);
+svg.append("g")
+.attr("transform", "translate(0," + height + ")")
+.style("font-family", "Inconsolata, monospace")
+.call(d3.axisBottom(x));
+
+ var y = d3.scaleLinear()
+.domain( [0, 1400])
+.range([ height, 0 ]);
+ svg.append("g")
+ .style("font-family", "Inconsolata, monospace")
+ .call(d3.axisLeft(y));
+
+              
+    
+              svg.append("path")
+              .datum(data)
+              .attr("fill", "none")
+              .attr("stroke", "pink")
+              .attr("stroke-width", 4)
+              
+              .attr("d", d3.line()
+               
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.value) })
+                )
+var Toolt = d3.select("#linechart")
+ .append("div")
+ .style("opacity", 0)
+  .attr("class", "toolt")
+  .style("background-color", "white")
+  .style("border", "solid")
+.style("border-width", "2px")
+.style("border-radius", "5px")
+ .style("padding", "5px")
+
+              
+ 
+ var mouseon = function(d) 
+ 
+ {
+ Toolt
+.style("opacity", 1)
+}
+var mouseshow = function(d) 
+              
+              {
+Toolt
+.html("Cases: " + d.value)
+ .style("top", (event.pageY)+"px")
+ .style("left",(event.pageX)+"px")
+                 
+}
+var mouseoff = function(d) 
+              
+{
+  Toolt
+ .style("opacity", 0)
+             }
+ svg
+ .append("g")
+ .selectAll("circles")
+.data(data)
+.enter()
+.append("circle")
+.attr("class", "dots")
+.attr("cx", function(d) { return x(d.date) } )
+ .attr("cy", function(d) { return y(d.value) } )
+.attr("r", 5)
+.attr("stroke", "#b1d5f8")
+ .attr("stroke-width", 3)
+.attr("fill", "#b1d5f8")
+ .on("mouseover", mouseon)
+ .on("mousemove", mouseshow)
+.on("mouseleave", mouseoff)
+        })
+        
+        
+        </script>
+<style>
+    .dots:hover {
+      stroke: pink;
+    
+    
+    }
+    
+    
+    .toolt {
+      color:pink;
+    
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+     padding: .5rem;
+     position: absolute;
+     border: 3px solid #b1d5f8;
+    border-radius: 5px;
+         pointer-events: none;
+         font-size: 1.3rem;
+    }
+    
+    .linesec{
+      width: 800px;
+        margin: 20px auto;
+    }
+       
+    </style>
+    
+    
+</section>
+
+
+<section class="intro">
+    <article class="h-entry" >
+     
+        <header class="article-header">
+            <h2 class = "p-name"> About</h2>
+           
+          </header>
+  <p>This website is split into two sections, academic blogs and data vizualizations.
+    The blogs will be further broken downn into analysis, close-readings and reflections on valueble academic material relevant to data vizualization and the web. </p>
+    
+   <p> 
+       
+  One visualization I hope to add to my final creative data vizualizations is to display the logistics of my third year coursework. Each of my semester courses will be broken down by their academic readings. The readings will be used to display what percentage of the academica is written by women, men, people of colour, white, european, american or african etc. To understand if my coursework in specific is still driven by white male or eurocentric academia.
+    </p>
+  </section>
+  
+  
+  
+  </p>
+ </main>   
+
+ <button id='backButton'>Back</button>
+</body>
+</html>
+

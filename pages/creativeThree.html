@@ -63,7 +63,7 @@
         <article class="h-entry" >
          
             <header class="article-header">
-                <h2 class = "article-name"> Bar graph: Covid 19 Deaths per Province in total</h2>
+                <h2 class = "article-name"> Bar graph: Covid 19 Deaths per Province in total until October</h2>
                
               </header>
     
@@ -105,24 +105,42 @@ var x = d3.scaleBand()
   .range([ 0, width ])
   .domain(data.map(function(d) { return d.Province; }))
   .padding(0.2);
-svg.append("g")
+   svg.append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(x))
   .selectAll("text")
+  .style("font-family", "Inconsolata, monospace")
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end");
 
 
-var y = d3.scaleLinear()
+   var y = d3.scaleLinear()
   .domain([0, 6000])
   .range([ height, 0]);
-svg.append("g")
+   svg.append("g")
+   .style("font-family", "Inconsolata, monospace")
   .call(d3.axisLeft(y));
 
-  var Tooltip = d3.select("#covidBar")
+
+      svg.append("text")             
+      .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 40) + ")")
+      .style("text-anchor", "middle")
+      .style("font-family", "Inconsolata, monospace")
+      .text("Provinces");
+      
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("font-family", "Inconsolata, monospace")
+      .style("text-anchor", "middle")
+      .text("Value");     
+
+  var Toolt = d3.select("#covidBar")
     .append("div")
 .style("opacity", 0)
-  .attr("class", "tooltip")
+  .attr("class", "toolt")
     
   
   .style("background-color", "pink")
@@ -132,35 +150,36 @@ svg.append("g")
     .style("padding", "10px")
 
   
-  var mousehover = function(d) {
-    Tooltip
+  var mousehover = function(d) 
+  {
+    Toolt
 .style("opacity", 1)
     d3.select(this)
     .style("opacity", 1)
       .style("stroke", "black")
       
   }
-  var mouseon = function(d) {
-    Tooltip
- .html("The total amount of deaths caused by COVID19 in "+d.Province+ " is: " + d.Value)
-  .style("left", (d3.mouse(this)[0]+100) + "px") 
-      .style("top", (d3.mouse(this)[1]) + "px")
+  var mouseon = function(d) 
+  {
+    Toolt
+ .html(d.Province+ ": " + d.Value)
+ .style("top", (event.pageY)+"px")
+.style("left",(event.pageX)+"px")
       
   }
-  var mousegone = function(d) {
-    Tooltip .style("opacity", 0)
+  var mousegone = function(d) 
+  {
+    Toolt .style("opacity", 0)
     
     d3.select(this)
     .style("stroke", "none")
       .style("opacity", 0.8)
   }
 
-svg.selectAll("mybar")
-  .data(data)
-  .enter()
-
-
-  .append("rect")
+    svg.selectAll("mybar")
+    .data(data)
+    .enter()
+    .append("rect")
     .attr("x", function(d) { return x(d.Province); })
     .attr("y", function(d) { return y(d.Value); })
     .attr("width", x.bandwidth())
@@ -188,7 +207,7 @@ fill: #b1d5f8;
   }
 
 
-.tooltip {
+.toolt {
   color:white;
 
 font-family: 'Inconsolata', monospace;
@@ -209,10 +228,33 @@ border-radius: 5px;
   
 }
 
+
+
 </style>
+
+<section class="intro">
+  <article class="h-entry" >
+   
+      <header class="article-header">
+          <h2 class = "p-name"> About</h2>
+         
+        </header>
+<p>This website is split into two sections, academic blogs and data vizualizations.
+  The blogs will be further broken downn into analysis, close-readings and reflections on valueble academic material relevant to data vizualization and the web. </p>
+  
+ <p> 
+     
+One visualization I hope to add to my final creative data vizualizations is to display the logistics of my third year coursework. Each of my semester courses will be broken down by their academic readings. The readings will be used to display what percentage of the academica is written by women, men, people of colour, white, european, american or african etc. To understand if my coursework in specific is still driven by white male or eurocentric academia.
+  </p>
+</section>
+
+
+
+</p>
 
 
 </main>
+<button id='backButton'>Back</button>
 </body>
 </html>
 

@@ -1,12 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
  <head>  
     <script type="module" src= "pages.js" async></script>
-    <script type="module" src= "creativeFive.html" async></script>
+  
    
-    
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    
      <link rel="stylesheet" type="text/css" href="cssPages.css">
 
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
@@ -20,11 +19,208 @@
      <title>My Web</title>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta property="description" content="Data Visualizations">
+<meta property="description" content="Data Visualization and Web Dev Blogs">
 <meta property="author" content="Iman Raffee">
 
 </head> 
 <body>
 
+  
+ <nav class="main-menu">
+     
+     <div class="web-name">
+         
+         <h3>My Website</h3>
+     </div>
+
+     
+<ul class="links"> 
+    <li><a href="home.html" >Home</a> </li>
+    <li><a href="about.html" >About</a> </li>
+    <li><a href="bloghome.html" >Blogs</a> </li>
+    <li><a href="contact.html" >Contact</a> </li>
+    
+</ul>
+
+<div class="mobile-menu">
+    <div class="l1"></div>
+    <div class="l2"></div>
+    <div class="l3"></div>
+
+    </div>
+</div>
+
+ </nav>
+
+<main>
+<header class="page-header"><h1>Data Vizualization One</h1>
+    <p>Pie chart showing the total deaths per province as per November 1st</p>
+
+</header>
+   
+    <section class="intro">
+        <article class="h-entry" >
+         
+            <header class="article-header">
+                <h2 class = "article-name"> Total Deahts were </h2>
+               
+              </header>
+    
+              <a id="Topbtn" title="scrollUp" href="#">&#94;</a>
+    
+    </article>
+    </section>
+    
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+<body>
+
+    
+   <div id="piechart"></div>
+   <div id="tooltip" class="hidden">
+       
+</div>
+   
+</body>
+<script>
+    var data = {"Eastern-Cape": 3703, "Free-State": 1509,"Gauteng": 4828,"KwaZulu-Natal": 3225,"Western-Cape": 4365, "Other Provinces":1781}
+   var width =750
+       height =750
+       margin =5
+   var radius =Math.min(width, height) / 2 - margin
+   var svg = d3.select("#piechart")
+ .append("svg")
+   .attr("width", width)
+   .attr("height", height)
+   .append("g")
+   .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  
+    var Toolt = d3.select("#piechart")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "toolt")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+
+var mouseon = function(d) 
+{
+ Toolt
+.style("opacity", 10)
+d3.select(this)
+.style("stroke", "pink")
+.style("opacity", 10)
+  }
+var mouseshow = function(d) 
+{
+  Toolt
+.html(d.data.key+": "+ d.value)
+.style("top", (event.pageY)+"px")
+.style("left",(event.pageX)+"px")
+  }
+var mouseoff = function(d) 
+{
+    Toolt
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
+
+
+   var pie = d3.pie()
+     .value(function(d) {return d.value; })
+   var piedata = pie(d3.entries(data))
+var arcGenerator = d3.arc()
+     .innerRadius(0)
+     .outerRadius(radius)
+    var color = d3.scaleOrdinal()
+     .domain(data)
+     .range(d3.schemePastel2);
+
+ 
+      svg
+     .selectAll('piesections')
+     .data(piedata)
+     .enter()
+     .append('path')
+ .attr('d', arcGenerator)
+ .attr('fill', function(d){ return(color(d.data.key)) })
+.attr("stroke", "white")
+.style("stroke-width", "3px")
+.style("opacity", 0.7)
+.on("mouseover", mouseon)
+    .on("mousemove", mouseshow)
+    .on("mouseleave", mouseoff)
+      svg
+     .selectAll('piesections')
+     .data(piedata)
+     .enter()
+     .append('text')
+     .text(function(d){ return d.data.key+" "+d.data.value})
+     .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+     .style("text-anchor", "middle")
+    
+     .style("font-size", 10)
+     .style ("font-family"," 'Inconsolata', monospace")
+    
+
+
+
+     
+
+     
+
+   
+   </script>
+
+<style>
+   svg 
+   {
+
+left: 50%;
+top: 90%;
+bottom: 10%;
+transform: translate(-50%, -50%);
+position : absolute;
+
+
+}
+text
+ {
+    font-family: sans-serif;
+    font-size: 12px;
+    fill:palevioletred;
+}
+   .toolt 
+   {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    color: pink;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    font-family: Inconsolata, monospace;
+    
+}
+
+
+
+</style>
+
+
+
+
+
+</main>
+<button id='backButton'>Back</button>
 </body>
 </html>

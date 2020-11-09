@@ -2,7 +2,7 @@
 <html lang="en">
  <head>  
     <script type="module" src= "pages.js" async></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+  
    
      <link rel="stylesheet" type="text/css" href="cssPages.css">
 
@@ -17,7 +17,7 @@
      <title>My Web</title>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta property="description" content="Data Visualization and Web Dev Blogs">
+<meta property="description" content="Data Visualization">
 <meta property="author" content="Iman Raffee">
 
 </head> 
@@ -51,8 +51,8 @@
  </nav>
 
 <main>
-<header class="page-header"><h1>Data Vizualization One</h1>
-    <p>Here we have a data Vizualization showing the following :</p>
+<header class="page-header"><h1>Data Vizualization Three</h1>
+    <p>Total Deaths per province and total active cases as per November 1st :</p>
 
 </header>
    
@@ -69,11 +69,145 @@
     </article>
     </section>
     
-    <svg>
+    <script src="https://d3js.org/d3.v4.js"></script>
 
-    </svg>
+<section class="barsection">
+<button class="barbtn" onclick="change('Deaths')">Deaths Total</button>
+<button class="barbtn" onclick="change('Active')">Nov Actice Cases</button>
+
+<div id="barchart"></div>
+
+</section>
+
+
+<script>
+var margin = {top: 50, right: 30, bottom: 70, left: 60},
+width = 760-margin.left- margin.right,
+height = 650-margin.top -margin.bottom;
+var svg = d3.select("#barchart")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+             
+
+"translate(" + margin.left + "," + margin.top + ")");
     
+
+
+  
+var xscale = d3.scaleBand()
+ .range([ 0, 650 ])
+ .padding(0.2);
+ 
+ var xaxis = svg.append("g")
+.attr("transform", "translate(0," + height + ")")
     
+    var yscale = d3.scaleLinear()
+      .range([ height, 0]);
+    var yaxis = svg.append("g")
+      .attr("class", "Yax")
+     
+      .style("font-family", "Inconsolata, monospace");
+    
+    function change(changeVar) {
+d3.csv("bardata.csv", function(data) {
+xscale.domain(data.map(function(d) { return d.group; }))
+xaxis.transition().duration(1000).call(d3.axisBottom(xscale))
+.selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("font-family", "Inconsolata, monospace")
+    .style("text-anchor", "end");
+    
+yscale.domain([0, d3.max(data, function(d) { return +d[changeVar] }) ]);
+yaxis.transition().duration(1000).call(d3.axisLeft(yscale));
+var mapping = svg.selectAll("rect")
+    .data(data)
+
+    mapping
+ .enter()
+ .append("rect")
+.merge(mapping)
+ .transition()
+ .attr("class,bar")
+.duration(1000)
+ .attr("x", function(d) { return xscale(d.group); })
+.attr("y", function(d) { return yscale(d[changeVar]); })
+.attr("width", xscale.bandwidth())
+ .attr("height", function(d) { return height - yscale(d[changeVar]); })
+.attr("fill", "#ffc7d7")
+      })
+    
+    }
+    svg.append("text")             
+      .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .style("font-family", "Inconsolata, monospace")
+      
+      .text("Provinces");
+      
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("font-family", "Inconsolata, monospace")
+      .style("text-anchor", "middle")
+      .text("Value");     
+
+    
+
+change('Deaths')
+
+
+
+  
+  
+
+  
+    
+
+    
+    </script>
+
+<style>
+    .bar:hover{
+  fill: #b1d5f8;
+  
+    }
+  
+  
+  
+  
+  .barsection{
+    width: 800px;
+      margin: 20px auto;
+     
+     
+    
+  }
+
+
+  .barbtn{
+    font-size:1rem;
+        padding:20px 20px;
+        border-radius:10px;
+        margin-top:20px;
+        color:white;
+        background-color: #ffc7d7;
+        border:#b1d5f8 3px solid;
+        font-family : 'Inconsolata', monospace;
+        text-decoration:none;
+}
+
+.barbtn:hover{
+  background:#b1d5f8;
+        color:white;
+
+
+}
+  </style>
 
 </main>
 <button id='backButton'>Back</button>
