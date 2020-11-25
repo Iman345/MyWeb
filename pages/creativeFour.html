@@ -2,8 +2,7 @@
 <html lang="en">
  <head>  
     <script type="module" src= "pages.js" async></script>
-    <script type="module" src= "creativeFour.js" async></script>
-    <script type="module" src= "creativeFour.js" async></script>
+   
     
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -54,8 +53,8 @@
  </nav>
 
 <main>
-<header class="page-header"><h1>Creative Work</h1>
-    <p>A place to experiment with D3</p>
+<header class="page-header"><h1>Data Visualization Four :A map of the World made with D3</h1>
+    <p>A place to experiment with D3 topojson and geojson</p>
 
 </header>
 
@@ -64,6 +63,67 @@
  
     
     <main>
+
+
+        <div class="map">
+
+        </div>
+    
+<script>
+    console.log(d3);
+const width = 1000;
+const height = 800;
+
+const svg = d3.select('.map')
+.append('svg')
+.attr('width', width)
+.attr('height', height);
+
+const map = d3.geoMercator().scale(140)
+    .translate([width / 2, height / 1.4]);
+const path = d3.geoPath(map);
+
+const g = svg.append('g');
+
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(data => {
+ const countries = topojson.feature(data, data.objects.countries);
+
+ g.selectAll('path')
+.data(countries.features)
+.enter().append('path')
+.attr('class', 'country')
+.attr('d', path);
+ console.log(countries);
+        
+    });
+    
+        
+
+        
+  
+
+</script>
+
+
+<section class="intro">
+    <article class="h-entry" >
+     
+        <header class="article-header">
+            <h2 class = "p-name"> Four D3 Map</h2>
+           
+          </header>
+  
+   <p> 
+       
+    An interesting use of D3 is using geojason and topojson to visual countries, cities, or entire continents. The options are unlimited. This is a simple example of a basic map. However, this map could be used to illustrate data across the globe. Heat maps, bubbles and tooltips are especially common to use with maps because they effectively allow the audience to reatain information and visualize it spacially. 
+  Maps are especially essential for mapping COVID 19 statistics because it allows the audience to fully grasp the reach and spread of the global pandemic on global scale. 
+  </p>
+  
+  
+  </section>
+
+
        
       <style>
           svg {
@@ -77,6 +137,9 @@
 .country {
  fill:#b1d5f8;
  stroke:  #ffc7d7;
+}
+.intro{
+    margin-top: 687px;
 }
       </style>  
       
