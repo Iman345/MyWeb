@@ -84,13 +84,14 @@
     .page-header h1{
         font: size 2rem;;
         line-height:1.5;
-        background:#b1d5f8;
+        color: black;
         
       }
       
       .page-header p{
         font-size:20px;
-        background:#b1d5f8;
+        background:#ffc7d7;
+        color: black;
       }
       
     .gobtn{
