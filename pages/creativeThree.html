@@ -54,7 +54,7 @@
  </nav>
 
 <main>
-<header class="page-header"><h1>Data Vizualization One</h1>
+<header class="page-header"><h1>Data Vizualization One: Vertical Bar Graph 1</h1>
     <p>Here we have a data Vizualization showing the following :</p>
 
 </header>
@@ -63,7 +63,7 @@
         <article class="h-entry" >
          
             <header class="article-header">
-                <h2 class = "article-name"> Bar graph: Covid 19 Deaths per Province in total until October</h2>
+                <h2 class = "article-name"> Vertical Bar graph: Covid 19 Deaths per Province in total until November 1st</h2>
                
               </header>
     
@@ -94,8 +94,7 @@ var svg = d3.select("#covidBar")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 d3.csv("data.csv", function(data) {
@@ -114,7 +113,7 @@ var x = d3.scaleBand()
     .style("text-anchor", "end");
 
 
-   var y = d3.scaleLinear()
+var y = d3.scaleLinear()
   .domain([0, 6000])
   .range([ height, 0]);
    svg.append("g")
@@ -135,7 +134,7 @@ var x = d3.scaleBand()
       .attr("dy", "1em")
       .style("font-family", "Inconsolata, monospace")
       .style("text-anchor", "middle")
-      .text("Value");     
+      .text("Number of Deaths");     
 
   var Toolt = d3.select("#covidBar")
     .append("div")
@@ -195,6 +194,7 @@ var x = d3.scaleBand()
 
 
 
+
 </script>
 
 
@@ -236,25 +236,38 @@ border-radius: 5px;
   <article class="h-entry" >
    
       <header class="article-header">
-          <h2 class = "p-name"> About</h2>
+          <h2 class = "p-name">Bar chart One Analysis</h2>
          
         </header>
-<p>This website is split into two sections, academic blogs and data vizualizations.
-  The blogs will be further broken downn into analysis, close-readings and reflections on valueble academic material relevant to data vizualization and the web. </p>
-  
- <p> 
-     
-One visualization I hope to add to my final creative data vizualizations is to display the logistics of my third year coursework. Each of my semester courses will be broken down by their academic readings. The readings will be used to display what percentage of the academica is written by women, men, people of colour, white, european, american or african etc. To understand if my coursework in specific is still driven by white male or eurocentric academia.
-  </p>
+<p>
+  This is a bar chart that depicts COVID19 caused deaths in total from March to November. From this data the audience can see the exact rankings of which province has the most and least deaths and easily digest the information. This is especially easy because the bars are arranged in ascending order. This bar graph is meant to show audiences how many deaths have occurred as a result of COVID 19 within each province. The audience does not need to know the exact amounts to compare and see the trend of provinces with big cities having the most cases but by hovering above the bars the user can see exact amounts. This bar graph displays the data from the previous pie charts and displays the data in a much more effective way. It can display all nine provinces without being cluttered and confusing. No information can be easily misconstrued as it can with pie charts and the size of slices. Therefore, for displaying this information this bar chart is highly effective. 
+</p> 
+    
+<h3>References</h3>
+
+<ul>
+
+    <li>Data was sourced from
+    </li>
+    <li>
+      https://sacoronavirus.co.za/
+
+    </li>
+  </ul>
+
 </section>
 
 
 
-</p>
-
-
 </main>
-<button id='backButton'>Back</button>
+<button id="backButton" onclick="Back()">Back</button>
+<script>
+  function Back() {
+    window.history.back();
+  }
+  </script>
+
+
 </body>
 </html>
 

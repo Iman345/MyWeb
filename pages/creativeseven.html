@@ -1,22 +1,13 @@
 
     <!DOCTYPE html>
     <html lang="en">
-     <head>  
-        <script type="module" src= "pages.js" async></script>
+   <head>  
+   <script type="module" src= "pages.js" async></script>
         
-      
-        
-         <link rel="stylesheet" type="text/css" href="cssPages.css">
-    
-         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
-         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
-         
-         
-         
-         
-         
-         
-         <title>My Web</title>
+   <link rel="stylesheet" type="text/css" href="cssPages.css">
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+     <title>My Web</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta property="description" content="Data Visualization and Web Dev Blogs">
@@ -25,44 +16,43 @@
     </head> 
     <body>
     
-      
-     <nav class="main-menu">
+      <nav class="main-menu">
          
-         <div class="web-name">
+       <div class="web-name">
              
-             <h3>My Website</h3>
-         </div>
+           <h3>My Website</h3>
+       </div>
     
          
-    <ul class="links"> 
+  <ul class="links"> 
         <li><a href="home.html" >Home</a> </li>
         <li><a href="about.html" >About</a> </li>
         <li><a href="bloghome.html" >Blogs</a> </li>
         <li><a href="contact.html" >Contact</a> </li>
         
-    </ul>
+  </ul>
     
     <div class="mobile-menu">
         <div class="l1"></div>
         <div class="l2"></div>
         <div class="l3"></div>
     
-        </div>
+    </div>
     </div>
     
      </nav>
     
     <main>
-    <header class="page-header"><h1>Data Vizualization Five</h1>
-        <p>Here we have a data Vizualization showing the following :</p>
-    
-    </header>
-       
+    <header class="page-header"><h1>Data Vizualization Five: Line graph</h1>
+        <p>A line graph illustrating COVID 19's spread across South Africa within March</p>
+  
+  </header>
+      
         <section class="intro">
             <article class="h-entry" >
              
                 <header class="article-header">
-                    <h2 class = "article-name">Line graph Covid Cases in March</h2>
+                    <h2 class = "article-name">Line graph Covid Cases in SA from the first case in March</h2>
                    
                   </header>
         
@@ -91,35 +81,30 @@ var svg = d3.select("#linechart")
           .append("g")
             .attr("transform","translate(" + margin.left + "," + margin.top + ")");
    
-d3.csv("linedata.csv",function(d){return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }},function(data) 
+            d3.csv("linedata.csv",function(d){return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }},function(casesdata) 
 {
-var x = d3.scaleTime()
-.domain(d3.extent(data, function(d) { return d.date; }))
+  var xaxis = d3.scaleTime()
+.domain(d3.extent(casesdata, function(d) { return d.date; }))
 .range([ 0, width ]);
 svg.append("g")
 .attr("transform", "translate(0," + height + ")")
 .style("font-family", "Inconsolata, monospace")
-.call(d3.axisBottom(x));
+.call(d3.axisBottom(xaxis));
 
- var y = d3.scaleLinear()
+ var yaxis = d3.scaleLinear()
 .domain( [0, 1400])
 .range([ height, 0 ]);
  svg.append("g")
  .style("font-family", "Inconsolata, monospace")
- .call(d3.axisLeft(y));
-
-              
-    
-              svg.append("path")
-              .datum(data)
-              .attr("fill", "none")
-              .attr("stroke", "pink")
-              .attr("stroke-width", 4)
-              
-              .attr("d", d3.line()
-               
-                .x(function(d) { return x(d.date) })
-                .y(function(d) { return y(d.value) })
+ .call(d3.axisLeft(yaxis));
+svg.append("path")
+.datum(casesdata)
+.attr("fill", "none")
+.attr("stroke", "pink")
+.attr("stroke-width", 4)
+.attr("d", d3.line()
+.x(function(d) { return xaxis(d.date) })
+.y(function(d) { return yaxis(d.value) })
                 )
 var Toolt = d3.select("#linechart")
  .append("div")
@@ -131,9 +116,7 @@ var Toolt = d3.select("#linechart")
 .style("border-radius", "5px")
  .style("padding", "5px")
 
-              
- 
- var mouseon = function(d) 
+var mouseon = function(d) 
  
  {
  Toolt
@@ -154,15 +137,15 @@ var mouseoff = function(d)
   Toolt
  .style("opacity", 0)
              }
- svg
+             svg
  .append("g")
  .selectAll("circles")
-.data(data)
-.enter()
-.append("circle")
-.attr("class", "dots")
-.attr("cx", function(d) { return x(d.date) } )
- .attr("cy", function(d) { return y(d.value) } )
+.data (casesdata) 
+.enter ()
+.append ("circle")
+.attr("class","dots")
+.attr("cx",function(d){return xaxis(d.date)})
+ .attr("cy",function(d) { return yaxis(d.value) } )
 .attr("r", 5)
 .attr("stroke", "#b1d5f8")
  .attr("stroke-width", 3)
@@ -170,19 +153,21 @@ var mouseoff = function(d)
  .on("mouseover", mouseon)
  .on("mousemove", mouseshow)
 .on("mouseleave", mouseoff)
-        })
+})
         
         
         </script>
 <style>
-    .dots:hover {
+    .dots:hover
+     {
       stroke: pink;
     
     
     }
     
     
-    .toolt {
+    .toolt 
+    {
       color:pink;
     
     font-family: 'Inconsolata', monospace;
@@ -195,7 +180,8 @@ var mouseoff = function(d)
          font-size: 1.3rem;
     }
     
-    .linesec{
+    .linesec
+    {
       width: 800px;
         margin: 20px auto;
     }
@@ -210,24 +196,39 @@ var mouseoff = function(d)
     <article class="h-entry" >
      
         <header class="article-header">
-            <h2 class = "p-name"> About</h2>
+            <h2 class = "p-name"> Line Graph Analysis</h2>
            
           </header>
-  <p>This website is split into two sections, academic blogs and data vizualizations.
-    The blogs will be further broken downn into analysis, close-readings and reflections on valueble academic material relevant to data vizualization and the web. </p>
-    
+  
    <p> 
        
-  One visualization I hope to add to my final creative data vizualizations is to display the logistics of my third year coursework. Each of my semester courses will be broken down by their academic readings. The readings will be used to display what percentage of the academica is written by women, men, people of colour, white, european, american or african etc. To understand if my coursework in specific is still driven by white male or eurocentric academia.
-    </p>
-  </section>
-  
-  
+    Line graphs are great tools for illustrating trends and showing changes over any period of time be it centuries, months, years, hours or days. They help us visualize a trend and potentially create an opportunity for us to predict how the trend will continue or an outcome from the trend. This line graph tracks the increase and spread of Coronavirus within South Africa in its first month of impact, March. This shows the initial gradual spread to an increasingly fast spread. This communicates how fast the virus is able to spread within days. 
+
   
   </p>
+  
+  <h3>References</h3>
+  
+  <ul>
+  
+      <li>Data was sourced from
+      </li>
+      <li>
+        https://mediahack.co.za/datastories/coronavirus/data/#
+  
+      </li>
+    </ul>
+  
+  </section>
+  
  </main>   
 
- <button id='backButton'>Back</button>
+ <button id="backButton" onclick="Back()">Back</button>
+<script>
+  function Back() {
+    window.history.back();
+  }
+  </script>
 </body>
 </html>
 

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+    <html lang="en">
+     <head>  
+        <script type="module" src= "pages.js" async></script>
+        
+      
+        
+         <link rel="stylesheet" type="text/css" href="cssPages.css">
+    
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
+         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+         
+         
+         
+         
+         
+         
+         <title>My Web</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="description" content="Data Visualization and Web Dev Blogs">
+    <meta property="author" content="Iman Raffee">
+    
+    </head> 
+    <body>
+    
+      
+     <nav class="main-menu">
+         
+         <div class="web-name">
+             
+             <h3>My Website</h3>
+         </div>
+    
+         
+    <ul class="links"> 
+        <li><a href="home.html" >Home</a> </li>
+        <li><a href="about.html" >About</a> </li>
+        <li><a href="bloghome.html" >Blogs</a> </li>
+        <li><a href="contact.html" >Contact</a> </li>
+        
+    </ul>
+    
+    <div class="mobile-menu">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l3"></div>
+    
+        </div>
+    </div>
+    
+     </nav>
+    
+    <main>
+    <header class="page-header"><h1>Data Vizualization Five</h1>
+        <p>Here we have a data Vizualization showing the following :</p>
+    
+    </header>
+       
+        <section class="intro">
+            <article class="h-entry" >
+             
+                <header class="article-header">
+                    <h2 class = "article-name">Line graph Covid Cases in March</h2>
+                   
+                  </header>
+        
+                  <a id="Topbtn" title="scrollUp" href="#">&#94;</a>
+        
+        </article>
+        </section>
+    
+    
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    
+<section class="linesec">
+
+    <div id="hbarchart"></div>
+   
+
+
+    <script>
+
+var margin = {top: 20, right: 30, bottom: 40, left: 90},
+ width = 560 - margin.left - margin.right,
+
+ height = 500 - margin.top - margin.bottom;
+        
+var svg = d3.select("#hbarchart")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+ .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+        
+d3.csv("data.csv", function(coviddata) 
+{
+        
+var xaxis = d3.scaleLinear()
+.domain([0, 5000])
+.range([ 0, width]);
+         
+
+
+svg.append("g")
+ .attr("transform", "translate(0," + height + ")")
+.call(d3.axisBottom(xaxis))
+.selectAll("text")
+  .style("font-family", "Inconsolata, monospace")
+.attr("transform", "translate(-10,0)rotate(-45)")
+.style("text-anchor", "end");
+        
+var yaxis = d3.scaleBand()
+.range([ 0, height ])
+ .domain(coviddata.map(function(d) { return d.Province; }))
+ .padding(.1);
+ 
+svg.append("g")
+.style("font-family", "Inconsolata, monospace")
+.call(d3.axisLeft(yaxis))
+            
+ var Toolt = d3.select("#hbarchart")
+    .append("div")
+.style("opacity", 0)
+  .attr("class", "toolt")
+    
+  
+  .style("background-color", "pink")
+    .style("border", "solid")
+  .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  
+  var mousehover = function(d) 
+  {
+    Toolt
+.style("opacity", 1)
+    d3.select(this)
+    .style("opacity", 1)
+      .style("stroke", "black")
+      
+  }
+  var mouseon = function(d) 
+  {
+    Toolt
+ .html(d.Province+ ": " + d.Value)
+ .style("top", (event.pageY)+"px")
+.style("left",(event.pageX)+"px")
+      
+  }
+  var mousegone = function(d) 
+  {
+    Toolt .style("opacity", 0)
+    
+    d3.select(this)
+    .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
+
+  bar=svg.selectAll("bars")
+ .data(coviddata)
+.enter()
+ .append("rect")
+  .attr("class", "bar")
+.attr("x", xaxis(0) )
+.attr("y", function(d) { return yaxis(d.Province); })
+ .attr("width", function(d) { return xaxis(d.Value); })
+ .attr("height", yaxis.bandwidth() )
+.attr("fill", "#ffc7d7")
+
+.on("mouseover", mousehover)
+.on("mousemove", mouseon)
+.on("mouseleave", mousegone)
+
+   
+
+
+        
+        })
+
+
+
+
+
+        
+        </script>
+        
+<style>
+    
+    
+    .toolt {
+      color:white;
+    
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+     padding: .5rem;
+     position: absolute;
+     border: 3px solid #b1d5f8;
+    border-radius: 5px;
+         pointer-events: none;
+         font-size: 1.3rem;
+    }
+    
+    .linesec{
+      width: 800px;
+        margin: 20px auto;
+    }
+    .bar:hover{
+fill: #b1d5f8;
+
+  }
+       
+    </style>
+    
+    
+</section>
+
+
+<section class="intro">
+    <article class="h-entry" >
+     
+        <header class="article-header">
+            <h2 class = "p-name"> Horizontal Bar graph</h2>
+           
+          </header>
+  <p>
+    In the previous bar graphs the COVID 19 deaths per province were displayed vertically, this bar graph displays the data horizontally. Horizontal graphs make it even easier to notice comparisons and differences in value especially when it is in ascending order. The close proximity of the bars and position allows the human eye to easily digest and account for which province has the most deaths, how close it is to the province in second place and how far is last place. Essentially, it allows the audience to easily account for 1st,2nd,3rd ..etc  and notice how great or small the differences in value are. The same can be done with the vertical graphs however, in this specific instance it is communicated slightly better.
+
+  
+  </p>
+  
+  <h3>References</h3>
+  
+  <ul>
+  
+      <li>Data was sourced from
+      </li>
+      <li>
+        https://sacoronavirus.co.za/
+  
+      </li>
+    </ul>
+  
+  </section>
+  
+ </main>   
+
+ <button id="backButton" onclick="Back()">Back</button>
+ <script>
+   function Back() {
+     window.history.back();
+   }
+   </script>
+</body>
+</html>

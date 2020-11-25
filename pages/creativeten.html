@@ -1,0 +1,1417 @@
+<head>
+  <script type="module" src= "pages.js" async></script>
+      
+    
+      
+  <link rel="stylesheet" type="text/css" href="cssPages.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" >
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+  
+  
+  
+  
+  
+  
+  <title>My Web</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="description" content="Data Visualization and Web Dev Blogs">
+<meta property="author" content="Iman Raffee">
+    <meta charset="utf-8">
+ 
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
+  </head>
+ 
+  <body>
+    
+ <nav class="main-menu">
+     
+  <div class="web-name">
+      
+      <h3>My Website</h3>
+  </div>
+
+  
+<ul class="links"> 
+ <li><a href="home.html" >Home</a> </li>
+ <li><a href="about.html" >About</a> </li>
+ <li><a href="bloghome.html" >Blogs</a> </li>
+ <li><a href="contact.html" >Contact</a> </li>
+ 
+</ul>
+
+<div class="mobile-menu">
+ <div class="l1"></div>
+ <div class="l2"></div>
+ <div class="l3"></div>
+
+ </div>
+</div>
+
+</nav>
+
+<main>
+<header class="page-header"><h1>Covid 19 Cases in South Africa per month since March 31st</h1>
+ <p>Here we have bar chart and line graph illustrating the spread of COVID 19:</p>
+
+</header>
+
+ <section class="intro">
+     <article class="h-entry" >
+      
+         <header class="article-header">
+             <h2 class = "article-name"> Bar chart and line graph</h2>
+            
+           </header>
+ 
+           <a id="Topbtn" title="scrollUp" href="#">&#94;</a>
+ 
+ </article>
+ </section>
+ <section class="graph1">
+    <div id="barline"></div>
+   
+    <button class="hidebtn" onclick="hides()">Hide Line</button>
+    <button class="showbtn" onclick="showing()">Show Line</button>
+    
+   
+    <script>
+    var coviddata =[ ['March 31',	1353,	1353],['April 30',	5647,	5647], ['May 31',32683,32683], ['June 30',	151209,	151209], ['July 31',493183,493183],['August 31',	627041,	627041],['September 30',	674339,	674339],['October 31',	725452,	725452],['November 22',767679,767679]];
+    var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 800 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+    var svg = d3.select("#barline")
+    .append("svg")
+   .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom);
+  
+    var xsc = d3.scaleBand()
+  .rangeRound([0, width])
+.domain(coviddata.map(function(d)
+ {
+ return d[0]; }))
+  .padding(0.1);
+        
+        
+        
+  ysc = d3.scaleLinear()
+ .rangeRound([height, 0])
+ .domain([0, d3.max(coviddata, (function (d) 
+ {
+ return d[2];}))]);
+  
+var g = svg.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+    g.append("g")
+    .attr("class", "axX")
+    .attr("transform", "translate(0," + 320 + ")")
+    .style("font-family"," 'Inconsolata', monospace")
+    .call(d3.axisBottom(xsc));
+  
+    g.append("g")
+    .attr("class", "axY")
+    .style("font-family"," 'Inconsolata', monospace")
+    .call(d3.axisLeft(ysc));
+
+
+       svg.append("text")             
+      .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 60) + ")")
+      .style("text-anchor", "middle")
+      .style("font-family", "Inconsolata, monospace")
+      
+      .text("A line and Bar graph of South Africa's Covid 19 Cases since March 2020 till November");
+      
+  
+
+  
+    var bars = g.selectAll("rect")
+    .data(coviddata)
+    .enter().append("g");
+  bars.append("rect")
+  .attr("x", function(d) { return xsc(d[0]); })
+  .attr("y", function(d) { return ysc(d[2]); })
+  .attr("width", xsc.bandwidth())
+.attr("height", function(d) { return height - ysc(d[2]); })
+.attr("class", function(d) {
+
+var values = "bar ";
+if (d[1] <100000 ) {
+  
+  return values + "barlow";
+
+ } else if (d[1] <500000) {
+
+  return values + "barMid";
+} else {
+          return values + "barhigh";}
+
+      });
+  
+     bars.append("text")
+    .attr("x", function(d) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+      .attr("y", function(d) { return ysc(d[2]); })
+      .style("font-family"," 'Inconsolata', monospace")
+    .attr("dy", "1.3rem")
+    .attr("font-size", "11px")
+      .attr("fill", "black")
+      .attr("text-anchor", "middle")
+      .text(function(d) {
+        return d[2];
+      });
+  
+    
+ var linegen = d3.line()
+.x(function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+.y(function(d) { return ysc(d[1]); })
+.curve(d3.curveMonotoneX);
+  
+       bars.append("path")
+      .attr("class", "lineg")
+      .attr("id", "linegraph")
+      .style("fill", "none")
+        .style("stroke", "#b1d5f8") 
+      .attr("d", linegen(coviddata)); 
+  
+ bars.append("circle") 
+  .attr("cx", function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+    .attr("cy", function(d) { return ysc(d[1]); })
+  .attr("class", "circ1")
+  .style("fill", "powderblue")
+  .attr("r", 6);
+        
+
+
+       
+      function hides(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg").attr("visibility", "hidden");
+    d3.selectAll(".circ1").attr("visibility", "hidden");
+  
+       
+    
+ 
+}
+
+function showing(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg").attr("visibility", "visible");
+    d3.selectAll(".circ1").attr("visibility", "visible");
+      
+       
+    
+ 
+}
+
+
+
+     
+  
+    </script>
+
+    
+    
+  </section>
+
+
+</div>
+  <article class="h-entry" >
+  <header class="page-header"><h1>Covid 19 Cases in South Africa per month,for the four most populated provinces</h1>
+    <p>The data shows the accumulated cases per month from the 31st March to the 22nd of November</p>
+   
+   </header>
+  </article>
+  <section class="graph2">
+
+  
+      <div id="barline2"></div>
+      
+      
+     
+      <script>
+      var coviddata =[ ['March',633,633],['April',1446,1446], ['May',4003,4003], ['June',42881,42881], ['July',175272,175272],['August',210169,210169],['September',219704,219704],['October',228756,228756],['November',233036,233036]];
+      var margin = {top: 30, right: 30, bottom: 70, left: 60},
+      width = 600 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
+  
+      var svg = d3.select("#barline2")
+      .append("svg")
+     .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom);
+    
+      var xsc = d3.scaleBand()
+    .rangeRound([0, width])
+  .domain(coviddata.map(function(d)
+   {
+   return d[0]; }))
+    .padding(0.1);
+          
+          
+          
+    ysc = d3.scaleLinear()
+   .rangeRound([height, 0])
+   .domain([0, d3.max(coviddata, (function (d) 
+   {
+   return d[2];}))]);
+    
+  var g = svg.append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+      g.append("g")
+      .attr("class", "axX")
+      .attr("transform", "translate(0," + 320 + ")")
+      .style("font-family"," 'Inconsolata', monospace")
+      .call(d3.axisBottom(xsc));
+    
+      g.append("g")
+      .attr("class", "axY")
+      .style("font-family"," 'Inconsolata', monospace")
+      .call(d3.axisLeft(ysc));
+  
+  
+         svg.append("text")             
+        .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 60) + ")")
+        .style("text-anchor", "middle")
+        .style("font-family", "Inconsolata, monospace")
+        
+        .text("A line and Bar graph of Gauteng's Covid 19 Cases");
+        
+    
+  
+    
+      var bars2 = g.selectAll("rect")
+      .data(coviddata)
+      .enter().append("g");
+    bars2.append("rect")
+    .attr("x", function(d) { return xsc(d[0]); })
+    .attr("y", function(d) { return ysc(d[2]); })
+    .attr("width", xsc.bandwidth())
+  .attr("height", function(d) { return height - ysc(d[2]); })
+  .attr("class", function(d) {
+  
+  var values = "bar ";
+  if (d[1] <100000 ) {
+    
+    return values + "barlow";
+  
+   } else if (d[1] <180000) {
+  
+    return values + "barMid";
+  } else {
+            return values + "barhigh";}
+  
+        });
+    
+       bars2.append("text")
+      .attr("x", function(d) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+        .attr("y", function(d) { return ysc(d[2]); })
+        .style("font-family"," 'Inconsolata', monospace")
+      .attr("dy", "1.3rem")
+      .attr("font-size", "11px")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+          return d[2];
+        });
+    
+      
+   var linegen = d3.line()
+  .x(function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+  .y(function(d) { return ysc(d[1]); })
+  .curve(d3.curveMonotoneX);
+    
+         bars2.append("path")
+        .attr("class", "lineg2")
+        .attr("id", "linegraph")
+        .style("fill", "none")
+          .style("stroke", "#b1d5f8") 
+        .attr("d", linegen(coviddata)); 
+    
+   bars2.append("circle") 
+    .attr("cx", function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+      .attr("cy", function(d) { return ysc(d[1]); })
+    .attr("class", "circ2")
+    .style("fill", "powderblue")
+    .attr("r", 6);
+          
+  
+  
+
+    function hides2(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg2").attr("visibility", "hidden");
+    d3.selectAll(".circ2").attr("visibility", "hidden");
+  
+       
+    
+ 
+}
+
+function showing2(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg2").attr("visibility", "visible");
+    d3.selectAll(".circ2").attr("visibility", "visible");
+      
+       
+    
+ 
+}
+  
+  
+       
+    
+      </script>
+      
+
+ <div id="barline3"></div>
+
+ 
+<script>
+  var coviddata =[ ['March 31',	325,	325],['April 30',	2342,		2342], ['May 31',	21382,	21382], ['June 30',62481,	62481], ['July 31',95223,95223],['August 31',106021,	106021],['September 30',	110739,	110739],['October 31',	117326,	117326],['November 22',125919,125919]];
+  var margin = {top: 30, right: 30, bottom: 70, left: 60},
+  width = 600 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
+
+  var svg = d3.select("#barline3")
+  .append("svg")
+ .attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom);
+
+  var xsc = d3.scaleBand()
+.rangeRound([0, width])
+.domain(coviddata.map(function(d)
+{
+return d[0]; }))
+.padding(0.1);
+      
+      
+      
+ysc = d3.scaleLinear()
+.rangeRound([height, 0])
+.domain([0, d3.max(coviddata, (function (d) 
+{
+return d[2];}))]);
+
+var g = svg.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  g.append("g")
+  .attr("class", "axX")
+  .attr("transform", "translate(0," + 320 + ")")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisBottom(xsc));
+
+  g.append("g")
+  .attr("class", "axY")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisLeft(ysc));
+
+
+     svg.append("text")             
+    .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 60) + ")")
+    .style("text-anchor", "middle")
+    .style("font-family", "Inconsolata, monospace")
+    
+    .text("A line and Bar graph of Wesetern Cape's Covid 19 Cases since March 2020 till November");
+    
+
+
+
+  var bars3 = g.selectAll("rect")
+  .data(coviddata)
+  .enter().append("g");
+bars3.append("rect")
+.attr("x", function(d) { return xsc(d[0]); })
+.attr("y", function(d) { return ysc(d[2]); })
+.attr("width", xsc.bandwidth())
+.attr("height", function(d) { return height - ysc(d[2]); })
+.attr("class", function(d) {
+
+var values = "bar ";
+if (d[1] <100000 ) {
+
+return values + "barlow";
+
+} else if (d[1] <115000) {
+
+return values + "barMid";
+} else {
+        return values + "barhigh";}
+
+    });
+
+   bars3.append("text")
+  .attr("x", function(d) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+    .attr("y", function(d) { return ysc(d[2]); })
+    .style("font-family"," 'Inconsolata', monospace")
+  .attr("dy", "1.3rem")
+  .attr("font-size", "11px")
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return d[2];
+    });
+
+  
+var linegen = d3.line()
+.x(function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+.y(function(d) { return ysc(d[1]); })
+.curve(d3.curveMonotoneX);
+
+     bars3.append("path")
+    .attr("class", "lineg3")
+    .attr("id", "linegraph")
+    .style("fill", "none")
+      .style("stroke", "#b1d5f8") 
+    .attr("d", linegen(coviddata)); 
+
+bars3.append("circle") 
+.attr("cx", function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+  .attr("cy", function(d) { return ysc(d[1]); })
+.attr("class", "circ3")
+.style("fill", "powderblue")
+.attr("r", 6);
+      
+
+
+   
+    
+     
+  
+      
+function hides3(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg3").attr("visibility", "hidden");
+    d3.selectAll(".circ3").attr("visibility", "hidden");
+  
+       
+    
+ 
+}
+
+function showing3(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg3").attr("visibility", "visible");
+    d3.selectAll(".circ3").attr("visibility", "visible");
+      
+       
+    
+ 
+}
+
+
+
+
+   
+
+  </script>
+
+  </section>
+
+  <section class="btns">
+  <button class="btn2" onclick="hides2()">Hide Line</button>
+<button class="btn2" onclick="showing2()">Show Line</button> 
+  
+<button class="btn3" onclick="hides3()">Hide Line</button>
+<button class="btn3" onclick="showing3()">Show Line</button> 
+</section>
+
+
+<section class="graph3">
+
+<div id="barline4"></div>
+<script>
+  
+  var coviddata =[ ['March 31',		179,		179],['April 30',	980,980], ['May 31',	2545,	2545], ['June 30',	9674,	9674], ['July 31',21262,21262],['August 31',113006,113006],['September 30',	119072,119072],['October 31', 	123124,		123124],['November 22',126034,126034]];
+  var margin = {top: 30, right: 30, bottom: 70, left: 60},
+  width = 600 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
+
+  var svg = d3.select("#barline4")
+  .append("svg")
+ .attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom);
+
+  var xsc = d3.scaleBand()
+.rangeRound([0, width])
+.domain(coviddata.map(function(d)
+{
+return d[0]; }))
+.padding(0.1);
+      
+      
+      
+ysc = d3.scaleLinear()
+.rangeRound([height, 0])
+.domain([0, d3.max(coviddata, (function (d) 
+{
+return d[2];}))]);
+
+var g = svg.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  g.append("g")
+  .attr("class", "axX")
+  .attr("transform", "translate(0," + 320 + ")")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisBottom(xsc));
+
+  g.append("g")
+  .attr("class", "axY")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisLeft(ysc));
+
+
+     svg.append("text")             
+    .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 60) + ")")
+    .style("text-anchor", "middle")
+    .style("font-family", "Inconsolata, monospace")
+    
+    .text("A line and Bar graph of Kwa-Zulu Natal's Covid 19 Cases since March 2020 till November");
+    
+
+
+
+  var bars4 = g.selectAll("rect")
+  .data(coviddata)
+  .enter().append("g");
+bars4.append("rect")
+.attr("x", function(d) { return xsc(d[0]); })
+.attr("y", function(d) { return ysc(d[2]); })
+.attr("width", xsc.bandwidth())
+.attr("height", function(d) { return height - ysc(d[2]); })
+.attr("class", function(d) {
+
+var values = "bar ";
+if (d[1] <10000 ) {
+
+return values + "barlow";
+
+} else if (d[1] <115000) {
+
+return values + "barMid";
+} else {
+        return values + "barhigh";}
+
+    });
+
+   bars4.append("text")
+  .attr("x", function(d) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+    .attr("y", function(d) { return ysc(d[2]); })
+    .style("font-family"," 'Inconsolata', monospace")
+  .attr("dy", "1.3rem")
+  .attr("font-size", "11px")
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return d[2];
+    });
+
+  
+var linegen = d3.line()
+.x(function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+.y(function(d) { return ysc(d[1]); })
+.curve(d3.curveMonotoneX);
+
+     bars4.append("path")
+    .attr("class", "lineg4")
+    .attr("id", "linegraph")
+    .style("fill", "none")
+      .style("stroke", "#b1d5f8") 
+    .attr("d", linegen(coviddata)); 
+
+bars4.append("circle") 
+.attr("cx", function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+  .attr("cy", function(d) { return ysc(d[1]); })
+.attr("class", "circ4")
+.style("fill", "powderblue")
+.attr("r", 6);
+      
+
+
+   
+    
+     
+  
+      
+function hides4(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg4").attr("visibility", "hidden");
+    d3.selectAll(".circ4").attr("visibility", "hidden");
+  
+       
+    
+ 
+}
+
+function showing4(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg4").attr("visibility", "visible");
+    d3.selectAll(".circ4").attr("visibility", "visible");
+      
+       
+    
+ 
+}
+</script>
+
+
+<div id="barline5"></div>
+<script>
+  
+  var coviddata =[ ['March 31',	15,	15],['April 30',	647,	647], ['May 31',3927,3927], ['June 30',27686,27686], ['July 31',		77938,	77938],['August 31',	86163,	86163],['September 30',		89204,	89204],['October 31',	96675,	96675],['November 22',	117374,	117374]];
+  var margin = {top: 30, right: 30, bottom: 70, left: 60},
+  width = 600 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
+
+  var svg = d3.select("#barline5")
+  .append("svg")
+ .attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom);
+
+  var xsc = d3.scaleBand()
+.rangeRound([0, width])
+.domain(coviddata.map(function(d)
+{
+return d[0]; }))
+.padding(0.1);
+      
+      
+      
+ysc = d3.scaleLinear()
+.rangeRound([height, 0])
+.domain([0, d3.max(coviddata, (function (d) 
+{
+return d[2];}))]);
+
+var g = svg.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  g.append("g")
+  .attr("class", "axX")
+  .attr("transform", "translate(0," + 320 + ")")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisBottom(xsc));
+
+  g.append("g")
+  .attr("class", "axY")
+  .style("font-family"," 'Inconsolata', monospace")
+  .call(d3.axisLeft(ysc));
+
+
+     svg.append("text")             
+    .attr("transform","translate(" + (width/2) + " ," +  (height + margin.top + 60) + ")")
+    .style("text-anchor", "middle")
+    .style("font-family", "Inconsolata, monospace")
+    
+    .text("A line and Bar graph of Eastern Cape Covid 19 Cases since March 2020 till November");
+    
+
+
+
+  var bars5 = g.selectAll("rect")
+  .data(coviddata)
+  .enter().append("g");
+bars5.append("rect")
+.attr("x", function(d) { return xsc(d[0]); })
+.attr("y", function(d) { return ysc(d[2]); })
+.attr("width", xsc.bandwidth())
+.attr("height", function(d) { return height - ysc(d[2]); })
+.attr("class", function(d) {
+
+var values = "bar ";
+if (d[1] <30000 ) {
+
+return values + "barlow";
+
+} else if (d[1] <90000) {
+
+return values + "barMid";
+} else {
+        return values + "barhigh";}
+
+    });
+
+   bars5.append("text")
+  .attr("x", function(d) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+    .attr("y", function(d) { return ysc(d[2]); })
+    .style("font-family"," 'Inconsolata', monospace")
+  .attr("dy", "1.3rem")
+  .attr("font-size", "11px")
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return d[2];
+    });
+
+  
+var linegen = d3.line()
+.x(function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+.y(function(d) { return ysc(d[1]); })
+.curve(d3.curveMonotoneX);
+
+     bars5.append("path")
+    .attr("class", "lineg5")
+    .attr("id", "linegraph")
+    .style("fill", "none")
+      .style("stroke", "#b1d5f8") 
+    .attr("d", linegen(coviddata)); 
+
+bars5.append("circle") 
+.attr("cx", function(d, i) { return xsc(d[0]) + xsc.bandwidth() / 2; })
+  .attr("cy", function(d) { return ysc(d[1]); })
+.attr("class", "circ5")
+.style("fill", "powderblue")
+.attr("r", 6);
+      
+
+
+   
+    
+     
+  
+      
+function hides5(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg5").attr("visibility", "hidden");
+    d3.selectAll(".circ5").attr("visibility", "hidden");
+  
+       
+    
+ 
+}
+
+function showing5(){
+       //document.getElementById("barline").style.visibility = "hidden";
+     d3.selectAll(".lineg5").attr("visibility", "visible");
+    d3.selectAll(".circ5").attr("visibility", "visible");
+      
+       
+    
+ 
+}
+</script>
+
+
+</section>
+
+  <section class="btns3">
+  <button class="btn4" onclick="hides4()">Hide Line</button>
+<button class="btn4" onclick="showing4()">Show Line</button> 
+  
+<button class="btn5" onclick="hides5()">Hide Line</button>
+<button  class="btn5" onclick="showing5()">Show Line</button> 
+</section>
+
+
+
+<article class="h-entry"  >
+  <header class="page-header"><h1>Donut Charts</h1>
+    <p>Information droplets of more SA COVID 19 stats</p>
+   
+   </header>
+  </article>
+<section class="donuts">
+<div id="dchart">
+  <h1>Which Sector does the Most Tests?</h1><br>
+  <p>The total number of tests conducted is 5 305 343,<br>
+     this donut graph shows the sector where most<br>
+     of the tests where conducted, sourced from <a href="https://www.nicd.ac.za/latest-confirmed-cases-of-covid-19-in-south-africa-23-nov-2020/" >NCID</a></p>
+</div>
+
+
+
+<script>
+
+var sectordata = [{
+        title: "Private 52%",
+        value: 58,
+        all: 100
+    },
+    {
+        title: "Public 48%",
+        value: 42,
+        all: 100
+    }
+];
+
+var width = 370;
+var height = 370;
+
+var svg = d3.select('#dchart')
+.append('svg')
+.attr('width', width)
+.attr('height', height)
+.append('g')
+.attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+var dwidth = 75;
+var radius = Math.min(width, height) / 2;
+var arc = d3.arc()
+.innerRadius(radius - dwidth)
+.outerRadius(radius);
+
+var donut = d3.pie()
+.value(function (d) { return d.value;}).sort(null);
+
+var colour = d3.scaleOrdinal().range(["#DFA8E4", "#FFC7D7", "#FFFE99"]);
+var Toolt = d3.select("#dchart2")
+    .append("div")
+.style("opacity", 0)
+  .attr("class", "toolt")
+    
+  
+  .style("background-color", "pink")
+    .style("border", "solid")
+  .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  
+  var mousehover = function(d) 
+  {
+    Toolt
+.style("opacity", 1)
+    d3.select(this)
+    .style("opacity", 0.5)
+      .style("stroke", "pink")
+      
+  }
+  var mouseon = function(d) 
+  {
+    Toolt
+ .html(d.value + '%')
+ .style("top", (event.pageY)+"px")
+.style("left",(event.pageX)+"px")
+      
+  }
+  var mousegone = function(d) 
+  {
+    Toolt .style("opacity", 0)
+    
+    d3.select(this)
+    .style("stroke", "none")
+      .style("opacity", 0.8)
+      
+  }
+
+var path = svg.selectAll('path')
+ .data(donut(sectordata))
+.enter()
+.append('path')
+.attr('d', arc)
+.attr('fill', function (d, i) {return colour(d.data.title);})
+.attr('transform', 'translate(0, 0)')
+.on("mouseover", mousehover)
+    .on("mousemove", mouseon)
+    .on("mouseleave", mousegone);
+
+
+var legsize = 13;
+var legspace = 7;
+
+
+   var innerlegend = svg.selectAll('.legend')
+  .data(colour.domain())
+  .enter()
+  .append('g')
+ .attr('class', 'circ')
+.attr('transform', function (d, i) {
+var height = legsize + legspace;
+var off = height * colour.domain().length / 2;
+var x = -2 * legsize - 13;
+var y = i * height - off; return 'translate(' + x + ',' + y + ')'; });
+
+innerlegend.append('circle')
+.attr('cx', 0)
+.attr('cy', 0)
+.attr('r', '0.5rem')
+.style('fill', colour)
+.style('stroke', colour);
+
+innerlegend.append('text')
+.attr('x', legsize + legspace)
+.attr('y', legsize - legspace)
+.text(function (d) { return d;});
+
+
+
+
+
+</script>
+
+
+<div id="dchart3">
+  <h1>COVID 19 Fatality Rate in SA </h1><br>
+  <p>
+    This Donut chart showing Fatality Rate of COIVID19 in SA<br>
+    this data takes into account cases from March till November
+  <br>this data was sourced from  <a href="https://www.coronatracker.com/country/south-africa/" > Corona Virus Tracker</a></p>
+</div>
+<script>
+
+  var genderdata = [{
+          
+      
+          title: "Fatality Rate 2.7%",
+          value: 2.7,
+          all: 100
+      },
+      {
+          title: "",
+          value: 80.3,
+          all: 100
+      }
+  ];
+  
+  var width = 370;
+  var height = 370;
+  
+  var svg = d3.select('#dchart3')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height)
+  .append('g')
+  .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+  
+  var dwidth = 75;
+  var radius = Math.min(width, height) / 2;
+  var arc = d3.arc()
+  .innerRadius(radius - dwidth)
+  .outerRadius(radius);
+  
+  var donut = d3.pie()
+  .value(function (d) { return d.value;}).sort(null);
+  
+  var colour = d3.scaleOrdinal().range(["#DFA8E4", "#DCDCDD"]);
+ 
+  var path = svg.selectAll('path')
+   .data(donut(genderdata))
+  .enter()
+  .append('path')
+  .attr('d', arc)
+  .attr('fill', function (d, i) {return colour(d.data.title);})
+  .attr('transform', 'translate(0, 0)');
+  
+  
+  
+  
+  
+  
+  
+  var legsize = 70;
+  var legspace = 7;
+  
+  
+     var innerlegend = svg.selectAll('.legend')
+    .data(colour.domain())
+    .enter()
+    .append('g')
+   .attr('class', 'circ')
+  .attr('transform', function (d, i) {
+  var height = legsize + legspace;
+  var off = height * colour.domain().length / 2;
+  var x = -2 * legsize - 13;
+  var y = i * height - off; return 'translate(' + x + ',' + y + ')'; });
+  
+  innerlegend.append('text')
+  .attr('x', legsize + legspace)
+  .attr('y', legsize - legspace)
+  .text(function (d) { return d;});
+  
+  
+  
+  
+  
+  </script>
+<div id="dchart2">
+  <h1>Which Gender has caught the most cases </h1><br>
+  <p>This data is based on the number of total cases,<br>
+    It shows a gendered perspective of who had the most cases<br>
+    this data was sourced from <a href="https://www.nicd.ac.za/wp-content/uploads/2020/11/COVID-19-National-Daily-Report_Public_2Nov.pdf" >NCID</a></p>
+</div>
+
+
+
+<script>
+
+var genderdata = [{
+        title: "Women 57%",
+        value: 57,
+        all: 100
+    },
+    {
+        title: "Men 41%",
+        value: 41,
+        all: 100
+    },
+    {
+        title: "Unspecified 2%",
+        value: 2,
+        all: 100
+    }
+];
+
+var width = 370;
+var height = 370;
+
+var svg = d3.select('#dchart2')
+.append('svg')
+.attr('width', width)
+.attr('height', height)
+.append('g')
+.attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+var dwidth = 75;
+var radius = Math.min(width, height) / 2;
+var arc = d3.arc()
+.innerRadius(radius - dwidth)
+.outerRadius(radius);
+
+var donut = d3.pie()
+.value(function (d) { return d.value;}).sort(null);
+
+var colour = d3.scaleOrdinal().range(["#DFA8E4", "#FFC7D7", "#FFFE99"]);
+var Toolt = d3.select("#dchart2")
+    .append("div")
+.style("opacity", 0)
+  .attr("class", "toolt")
+    
+  
+  .style("background-color", "pink")
+    .style("border", "solid")
+  .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+  
+  var mousehover = function(d) 
+  {
+    Toolt
+.style("opacity", 1)
+    d3.select(this)
+    .style("opacity", 0.5)
+      .style("stroke", "pink")
+      
+  }
+  var mouseon = function(d) 
+  {
+    Toolt
+ .html(d.value + '%')
+ .style("top", (event.pageY)+"px")
+.style("left",(event.pageX)+"px")
+      
+  }
+  var mousegone = function(d) 
+  {
+    Toolt .style("opacity", 0)
+    
+    d3.select(this)
+    .style("stroke", "none")
+      .style("opacity", 1)
+      
+  }
+var path = svg.selectAll('path')
+ .data(donut(genderdata))
+.enter()
+.append('path')
+.attr('d', arc)
+.attr('fill', function (d, i) {return colour(d.data.title);})
+.attr('transform', 'translate(0, 0)')
+.on("mouseover", mousehover)
+    .on("mousemove", mouseon)
+    .on("mouseleave", mousegone);
+
+
+
+
+
+
+
+var legsize = 13;
+var legspace = 5;
+
+
+   var innerlegend = svg.selectAll('.legend')
+  .data(colour.domain())
+  .enter()
+  .append('g')
+ .attr('class', 'circ')
+.attr('transform', function (d, i) {
+var height = legsize + legspace;
+var off = height * colour.domain().length / 2;
+var x = -2 * legsize - 13;
+var y = i * height - off; return 'translate(' + x + ',' + y + ')'; });
+
+innerlegend.append('circle')
+.attr('cx', 0)
+.attr('cy', 0)
+.attr('r', '0.5rem')
+.style('fill', colour)
+.style('stroke', colour);
+
+innerlegend.append('text')
+.attr('x', legsize + legspace)
+.attr('y', legsize - legspace)
+.text(function (d) { return d;});
+
+
+
+
+
+</script>
+</section>
+
+
+<button id="backBtn" onclick="Back()">Back</button>
+ <script>
+   function Back() {
+     window.history.back();
+   }
+   </script>
+
+<style>
+
+.axX path {
+       display: none; }
+       .axY path {
+       display: none; }
+    .barHigh { 
+      fill:#E2758A; 
+      }
+    .barMid { 
+      fill:pink; 
+    }
+    .barLow { 
+      fill:lavender;
+      }
+    .barHigh:hover{
+      fill: rgb(238, 161, 187);
+      }
+    .barLow:hover {
+      fill: rgb(243, 211, 243); 
+      }
+      .barMid:hover {
+      fill: rgb(195, 223, 250); 
+      }
+    
+   
+    .linegraph {
+       
+        stroke-width: 1.5;
+    }
+
+    .hidebtn{
+     
+        font-size:1rem;
+        padding:10px 10px;
+        border-radius:10px;
+        margin-top:20px;
+        color:white;
+        background-color: #ffc7d7;
+        border:#b1d5f8 3px solid;
+        font-family: 'Inconsolata', monospace;
+        text-decoration:none;
+        }
+         
+        .showbtn:hover{
+
+        background:#b1d5f8;
+        color:white;
+      }
+      .showbtn{
+     
+     font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+     }
+      
+     .showbtn:hover{
+
+     background:#b1d5f8;
+     color:white;
+   }
+
+   .graph1{
+     
+    margin: auto;
+  width: 50%;
+  padding-bottom: 10px;
+ 
+
+
+   }
+
+
+   .graph2{
+    display: flex;
+  
+  justify-content:space-between;
+  margin: 0.5em;
+  padding-right: 10px;
+   padding-left: 10px;
+    
+   }
+
+   .graph3{
+    display: flex;
+   
+  justify-content:space-between;
+  margin: 0.5em;
+  padding-right: 10px;
+   padding-left: 10px;
+    
+   }
+
+.donuts{
+ display: flex;
+   width: 100%;
+  justify-content:space-evenly;
+ 
+  
+ 
+   font-family: Inconsolate, monospace;
+
+   background-color:#b1d5f8; 
+   margin-top: 10px;
+   }
+
+    
+
+   .donuts p{
+     
+     font-size: 14px;
+     background-color:#b1d5f8;
+   }
+
+   .btns{
+    
+    width: 90%;
+  
+    display: flex;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+    
+
+.btns3{
+    
+    width: 90%;
+  
+    display: flex;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+    
+   
+   .btn2{
+    width: 10%;
+  
+    margin-right: auto;
+    font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+   }
+
+   .btn3{
+    width: 10%;
+    margin-left: auto;
+    font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+    
+   }
+
+   .btn4{
+    width: 10%;
+  
+    margin-right: auto;
+    font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+   }
+
+   .btn5{
+    width: 10%;
+    margin-left: auto;
+    font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+    
+   }
+
+
+   #backBtn{
+    width: 10%;
+    margin-left: auto;
+    font-size:1rem;
+     padding:10px 10px;
+     border-radius:10px;
+     margin-top:20px;
+     color:white;
+     background-color: #ffc7d7;
+     border:#b1d5f8 3px solid;
+     font-family: 'Inconsolata', monospace;
+     text-decoration:none;
+
+   }
+.toolt{
+ 
+  
+   
+    position: absolute;
+
+    width: auto;
+    height: auto;
+    
+    border: 0 none;
+    stroke:  #b1d5f8;
+    border-radius: 8px 8px 8px 8px;
+    
+
+      
+     
+      
+    }
+
+
+
+ 
+   
+  </style>
+  </body>
+  </html>

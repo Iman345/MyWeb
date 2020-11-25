@@ -69,8 +69,7 @@
     </section>
     
     <section class="CovidBarChart"></section>
-    <!DOCTYPE html>
-<meta charset="utf-8">
+  
 
 
 <script src="https://d3js.org/d3.v4.js"></script>
@@ -250,24 +249,56 @@ Svg.selectAll("labels")
   <article class="h-entry" >
    
       <header class="article-header">
-          <h2 class = "p-name"> About</h2>
+          <h2 class = "p-name"> Analysis of data visualization 1 & 2</h2>
          
         </header>
-<p>This website is split into two sections, academic blogs and data vizualizations.
-  The blogs will be further broken downn into analysis, close-readings and reflections on valueble academic material relevant to data vizualization and the web. </p>
-  
- <p> 
-     
-One visualization I hope to add to my final creative data vizualizations is to display the logistics of my third year coursework. Each of my semester courses will be broken down by their academic readings. The readings will be used to display what percentage of the academica is written by women, men, people of colour, white, european, american or african etc. To understand if my coursework in specific is still driven by white male or eurocentric academia.
-  </p>
-</section>
+<p>
+  In the first and second data visualizations, we have the controversial pie chart demonstrating COVID19 stats. The first data visualization displays the amount of deaths that COVID19 has caused since March until November, within five provinces who had the most cases and therefore, deaths. The other provinces were excluded and merged as “other”. This allows the user to focus on the provinces with the most cases and assess who has the most deaths in the major provinces. Each slice has a label with the name of the province and the number of deaths caused. 
 
+</p>
+
+
+ <p> 
+  The second uses a different approach, it uses a legend to show the information and a pie chart which depicts two different data sets.  The first data set shows the total deaths until November and the second data set shows the total active cases in October. The first with the labels were easier for the audience to comprehend. While the second was difficult to easily understand and digest the data because the audience would have to keep going from the legend to the pie chart. Therefore, instead of absorbing information the audience has to play a memory game. 
+
+</p>
+
+<p>
+
+  I find that both data visualizations do poorly to communicate effectively. In pie chart 1 the audience can grasp that it is Gauteng that has experienced the most deaths and see how the other province’s fatalities but it is difficult to compare and comprehend the vast difference between the numbers values. 
+
+</p>
+<p>
+  Pie chart 2 is difficult and frustrating to absorb information from because it is difficult to remember which colour represents each province. The user does not know exact amounts either. Therefore, while you can see Gauteng has the most deaths and active cases, it's difficult to see who has the second, third, fourth ...etc Pie chart 2 can benefit from having labels to be easier to read instead of a legend. Looking at pie chart A the desired information is communicated, however, it is not communicated in the most effective way possible. Pie charts are highly controversial in data visualization discussions because they can often be confusing to the human eye and easily miscommunicate information. The slices may look the same size but they may not be, the brain finds it difficult to decipher information based on angels.Therefore,it is difficult for the user to really comprehend and compare effectively using a pie chart. Therefore, the next data visualizations will show the same information using bar graphs to analyse if it is a more effective communicator for this specific COVID data. Experts warn against pie charts and by experimenting with them it is clear how they can be difficult to use for any data. With less statistics and slices it might be more effective but for this data set it does not do its job in communicating information.
+
+</p>
+
+<h3>References</h3>
+
+<ul>
+
+    <li>Data was sourced from
+    </li>
+    <li>
+      https://sacoronavirus.co.za/
+
+    </li>
+  </ul>
+
+</section>
 
 
 </p>
 
-</main>
-<button id='backButton'>Back</button>
 
+
+</main>
+
+<button id="backButton" onclick="Back()">Back</button>
+<script>
+  function Back() {
+    window.history.back();
+  }
+  </script>
 </body>
 </html>

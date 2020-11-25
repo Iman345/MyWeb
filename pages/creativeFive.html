@@ -54,7 +54,7 @@
 
 <main>
 <header class="page-header"><h1>Data Vizualization One</h1>
-    <p>Pie chart showing the total deaths per province as per November 1st</p>
+    <p>Pie chart showing the total deaths per province as per November 1st in South Africa</p>
 
 </header>
    
@@ -62,7 +62,7 @@
         <article class="h-entry" >
          
             <header class="article-header">
-                <h2 class = "article-name"> Total Deahts were </h2>
+                <h2 class = "article-name"> This pie chart shows the five provinces with the highest populations and thus the most fatalities</h2>
                
               </header>
     
@@ -221,6 +221,11 @@ text
 
 
 </main>
-<button id='backButton'>Back</button>
+<button id="backButton" onclick="Back()">Back</button>
+<script>
+  function Back() {
+    window.history.back();
+  }
+  </script>
 </body>
 </html>
